@@ -1,6 +1,6 @@
 package com.epam.jwd.entity;
 
-public interface Text {
+public interface TextFile {
 
     void printComponentName();
     String getComponents();
