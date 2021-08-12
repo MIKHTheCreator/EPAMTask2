@@ -6,13 +6,13 @@ import java.util.Objects;
 public class Sentence {
 
     private String sentence;
-    private List<Character> listOfPunctuationMarks;
-    private List<String> listOfWords;
+    private List<PunctuationMark> punctuationMarkList;
+    private List<CommonWord> wordList;
 
-    public Sentence(String sentence, List<Character> listOfPunctuationMarks, List<String> listOfWords) {
+    public Sentence(String sentence, List<PunctuationMark> punctuationMarkList, List<CommonWord> wordList) {
         this.sentence = sentence;
-        this.listOfPunctuationMarks = listOfPunctuationMarks;
-        this.listOfWords = listOfWords;
+        this.punctuationMarkList = punctuationMarkList;
+        this.wordList = wordList;
     }
 
     public String getSentence() {
@@ -23,20 +23,20 @@ public class Sentence {
         this.sentence = sentence;
     }
 
-    public List<Character> getListOfPunctuationMarks() {
-        return listOfPunctuationMarks;
+    public List<PunctuationMark> getPunctuationMarkList() {
+        return punctuationMarkList;
     }
 
-    public void setListOfPunctuationMarks(List<Character> listOfPunctuationMarks) {
-        this.listOfPunctuationMarks = listOfPunctuationMarks;
+    public void setPunctuationMarkList(List<PunctuationMark> punctuationMarkList) {
+        this.punctuationMarkList = punctuationMarkList;
     }
 
-    public List<String> getListOfWords() {
-        return listOfWords;
+    public List<CommonWord> getWordList() {
+        return wordList;
     }
 
-    public void setListOfWords(List<String> listOfWords) {
-        this.listOfWords = listOfWords;
+    public void setWordList(List<CommonWord> wordList) {
+        this.wordList = wordList;
     }
 
     @Override
@@ -45,13 +45,13 @@ public class Sentence {
         if (o == null || getClass() != o.getClass()) return false;
         Sentence sentence1 = (Sentence) o;
         return Objects.equals(sentence, sentence1.sentence)
-                && Objects.equals(listOfPunctuationMarks, sentence1.listOfPunctuationMarks)
-                && Objects.equals(listOfWords, sentence1.listOfWords);
+                && Objects.equals(punctuationMarkList, sentence1.punctuationMarkList)
+                && Objects.equals(wordList, sentence1.wordList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sentence, listOfPunctuationMarks, listOfWords);
+        return Objects.hash(sentence, punctuationMarkList, wordList);
     }
 
     @Override
