@@ -2,20 +2,25 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
-public class PunctuationMark {
+public class PunctuationMark implements SyntaxStructure{
 
-    private char character;
+    private String character;
 
-    public PunctuationMark(char character) {
+    public PunctuationMark(String character) {
         this.character = character;
     }
 
-    public char getCharacter() {
+    public String getCharacter() {
         return character;
     }
 
-    public void setCharacter(char character) {
+    public void setCharacter(String character) {
         this.character = character;
+    }
+
+    @Override
+    public void getStructure() {
+        System.out.print(character + "\s");
     }
 
     @Override
@@ -23,7 +28,7 @@ public class PunctuationMark {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PunctuationMark that = (PunctuationMark) o;
-        return character == that.character;
+        return Objects.equals(character, that.character);
     }
 
     @Override
@@ -33,7 +38,7 @@ public class PunctuationMark {
 
     @Override
     public String toString() {
-        return new StringBuilder("\nPunctuation Mark = '")
+        return new StringBuilder("'")
                 .append(character)
                 .append("'")
                 .toString();
