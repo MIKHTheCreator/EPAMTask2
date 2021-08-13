@@ -5,11 +5,9 @@ import java.util.Objects;
 public class Word implements SyntaxStructure{
 
     private String word;
-    private int numOfSymbols;
 
     public Word(String word) {
         this.word = word;
-        this.numOfSymbols = word.length();
     }
 
     public String getWord() {
@@ -18,11 +16,10 @@ public class Word implements SyntaxStructure{
 
     public void setWord(String word) {
         this.word = word;
-        this.numOfSymbols = word.length();
     }
 
     public int getNumOfSymbols() {
-        return numOfSymbols;
+        return word.length();
     }
 
     @Override
@@ -35,12 +32,12 @@ public class Word implements SyntaxStructure{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Word word1 = (Word) o;
-        return numOfSymbols == word1.numOfSymbols && Objects.equals(word, word1.word);
+        return Objects.equals(word, word1.word);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(word, numOfSymbols);
+        return Objects.hash(word);
     }
 
     @Override
