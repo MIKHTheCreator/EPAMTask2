@@ -38,9 +38,6 @@ public class PunctuationMark implements SyntaxStructure{
 
     @Override
     public String toString() {
-        return new StringBuilder("'")
-                .append(character)
-                .append("'")
-                .toString();
+        return character;
     }
 }

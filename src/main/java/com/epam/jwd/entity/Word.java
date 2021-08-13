@@ -42,9 +42,6 @@ public class Word implements SyntaxStructure{
 
     @Override
     public String toString() {
-        return new StringBuilder("'")
-                .append(word)
-                .append("'")
-                .toString();
+        return word;
     }
 }

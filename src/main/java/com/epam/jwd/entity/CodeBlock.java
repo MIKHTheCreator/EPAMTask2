@@ -42,9 +42,6 @@ public class CodeBlock implements SyntaxStructure {
 
     @Override
     public String toString() {
-        return new StringBuilder("'")
-                .append(codeBlock)
-                .append("'")
-                .toString();
+        return codeBlock;
     }
 }

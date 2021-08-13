@@ -3,7 +3,6 @@ package com.epam.jwd.entity;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Text implements SyntaxStructure{
 
