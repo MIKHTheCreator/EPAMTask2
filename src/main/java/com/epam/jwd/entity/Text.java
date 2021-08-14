@@ -1,65 +1,43 @@
 package com.epam.jwd.entity;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
-public class Text implements SyntaxStructure{
+public class Text extends CompositeSyntaxStructure implements SyntaxStructure{
 
-    private List<SyntaxStructure> listOfComponents;
+    private String textType;
 
-    public Text(SyntaxStructure... components) {
-        addComponent(components);
+    public Text(String textType, SyntaxStructure... components) {
+        super(components);
+        this.textType = textType;
     }
 
-    public List<SyntaxStructure> getListOfComponents() {
-        return listOfComponents;
+    public String getTextType() {
+        return textType;
     }
 
-    public void setListOfComponents(List<SyntaxStructure> listOfComponents) {
-        this.listOfComponents = listOfComponents;
-    }
-
-    public void addComponent(SyntaxStructure component){
-        listOfComponents.add(component);
-    }
-
-    public void addComponent(SyntaxStructure... components){
-        listOfComponents.addAll(Arrays.asList(components));
-    }
-
-    public void addComponent(List<? extends SyntaxStructure> components){
-        listOfComponents.addAll(components);
-    }
-
-    public boolean removeComponent(SyntaxStructure component){
-        return listOfComponents.remove(component);
-    }
-
-    public int getNumOfComponents(){
-        return listOfComponents.size();
-    }
-
-    @Override
-    public void getStructure() {
-        listOfComponents.forEach(SyntaxStructure::getStructure);
+    public void setTextType(String textType) {
+        this.textType = textType;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Text text = (Text) o;
-        return Objects.equals(listOfComponents, text.listOfComponents);
+        return Objects.equals(textType, text.textType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(listOfComponents);
+        return Objects.hash(super.hashCode(), textType);
     }
 
     @Override
     public String toString() {
-        return listOfComponents.stream().toString();
+        return new StringBuilder(super.toString())
+                .append("Type of Text: ")
+                .append(textType)
+                .toString();
     }
 }

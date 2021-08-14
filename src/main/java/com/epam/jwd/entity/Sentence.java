@@ -1,61 +1,43 @@
 package com.epam.jwd.entity;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
-public class Sentence implements SyntaxStructure{
+public class Sentence extends CompositeSyntaxStructure implements SyntaxStructure{
 
-    private List<SyntaxStructure> listOfComponents;
+    private boolean isSimple;
 
-    public Sentence(SyntaxStructure... components) {
-        addComponent(components);
+    public Sentence(boolean isSimple, SyntaxStructure... components) {
+        super(components);
+        this.isSimple = isSimple;
     }
 
-    public List<SyntaxStructure> getListOfComponents() {
-        return listOfComponents;
+    public boolean isSimple() {
+        return isSimple;
     }
 
-    public void setListOfComponents(List<SyntaxStructure> listOfComponents) {
-        this.listOfComponents = listOfComponents;
-    }
-
-    public void addComponent(SyntaxStructure component){
-        listOfComponents.add(component);
-    }
-
-    public void addComponent(SyntaxStructure... components){
-        listOfComponents.addAll(Arrays.asList(components));
-    }
-
-    public boolean removeComponent(SyntaxStructure component){
-        return listOfComponents.remove(component);
-    }
-
-    @Override
-    public void getStructure() {
-        listOfComponents.forEach(SyntaxStructure::getStructure);
-    }
-
-    public int getNumOfComponents(){
-        return listOfComponents.size();
+    public void setSimple(boolean simple) {
+        isSimple = simple;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Sentence sentence = (Sentence) o;
-        return Objects.equals(listOfComponents, sentence.listOfComponents);
+        return isSimple == sentence.isSimple;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(listOfComponents);
+        return Objects.hash(super.hashCode(), isSimple);
     }
 
     @Override
     public String toString() {
-        return listOfComponents.stream().toString();
+        return new StringBuilder(super.toString())
+                .append("Simple Sentence: ")
+                .append(isSimple)
+                .toString();
     }
 }

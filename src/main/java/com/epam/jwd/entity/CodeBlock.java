@@ -2,46 +2,42 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
-public class CodeBlock implements SyntaxStructure {
+public class CodeBlock extends CompositeSyntaxStructure implements SyntaxStructure {
 
-    private String codeBlock;
+    private String codeBlockLanguage;
 
-    public CodeBlock(String codeBlock) {
-        this.codeBlock = codeBlock;
+    public CodeBlock(String codeBlockLanguage, SyntaxStructure... components) {
+        super(components);
+        this.codeBlockLanguage = codeBlockLanguage;
     }
 
-    public String getCodeBlock() {
-        return codeBlock;
+    public String getCodeBlockLanguage() {
+        return codeBlockLanguage;
     }
 
-    public void setCodeBlock(String codeBlock) {
-        this.codeBlock = codeBlock;
-    }
-
-    public int getCodeBlockSize() {
-        return (int) codeBlock.lines().filter(s -> s.equals("\n")).count();
-    }
-
-    @Override
-    public void getStructure() {
-        System.out.print(codeBlock +"\s");
+    public void setCodeBlockLanguage(String codeBlockLanguage) {
+        this.codeBlockLanguage = codeBlockLanguage;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CodeBlock codeBlock1 = (CodeBlock) o;
-        return Objects.equals(codeBlock, codeBlock1.codeBlock);
+        if (!super.equals(o)) return false;
+        CodeBlock codeBlock = (CodeBlock) o;
+        return Objects.equals(codeBlockLanguage, codeBlock.codeBlockLanguage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codeBlock);
+        return Objects.hash(super.hashCode(), codeBlockLanguage);
     }
 
     @Override
     public String toString() {
-        return codeBlock;
+        return new StringBuilder(super.toString())
+                .append("Code Block Programming Language: ")
+                .append(codeBlockLanguage)
+                .toString();
     }
 }
