@@ -40,12 +40,12 @@ public abstract class CompositeSyntaxStructure implements SyntaxStructure{
     @Override
     public String getComponent() {
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (SyntaxStructure structure: listOfComponents) {
-            result += structure.getComponent();
+            result.append(structure.getComponent());
         }
-        return result;
+        return result.toString();
     }
 
     public int getNumOfComponents(){
