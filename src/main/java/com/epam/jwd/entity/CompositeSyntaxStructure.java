@@ -37,6 +37,17 @@ public abstract class CompositeSyntaxStructure implements SyntaxStructure{
         listOfComponents.forEach(SyntaxStructure::getStructureAsText);
     }
 
+    @Override
+    public String getComponent() {
+
+        String result = "";
+
+        for (SyntaxStructure structure: listOfComponents) {
+            result += structure.getComponent();
+        }
+        return result;
+    }
+
     public int getNumOfComponents(){
         return listOfComponents.size();
     }

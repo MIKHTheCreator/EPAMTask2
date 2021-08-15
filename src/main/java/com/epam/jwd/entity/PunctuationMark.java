@@ -24,6 +24,11 @@ public class PunctuationMark implements SyntaxStructure{
     }
 
     @Override
+    public String getComponent() {
+        return character;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
