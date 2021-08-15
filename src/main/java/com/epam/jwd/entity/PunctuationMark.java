@@ -2,7 +2,7 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
-public class PunctuationMark implements SyntaxStructure{
+public class PunctuationMark implements SyntaxStructure {
 
     private String character;
 

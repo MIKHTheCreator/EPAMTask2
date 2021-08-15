@@ -2,7 +2,7 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
-public class Sentence extends CompositeSyntaxStructure implements SyntaxStructure{
+public class Sentence extends CompositeSyntaxStructure implements SyntaxStructure {
 
     private boolean isSimple;
 

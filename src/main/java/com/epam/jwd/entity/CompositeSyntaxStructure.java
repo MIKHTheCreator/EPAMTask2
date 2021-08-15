@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class CompositeSyntaxStructure implements SyntaxStructure{
+public abstract class CompositeSyntaxStructure implements SyntaxStructure {
 
     private List<SyntaxStructure> listOfComponents;
 
@@ -20,15 +20,15 @@ public abstract class CompositeSyntaxStructure implements SyntaxStructure{
         this.listOfComponents = listOfComponents;
     }
 
-    public void addComponent(SyntaxStructure component){
+    public void addComponent(SyntaxStructure component) {
         listOfComponents.add(component);
     }
 
-    public void addComponent(SyntaxStructure... components){
+    public void addComponent(SyntaxStructure... components) {
         listOfComponents.addAll(Arrays.asList(components));
     }
 
-    public boolean removeComponent(SyntaxStructure component){
+    public boolean removeComponent(SyntaxStructure component) {
         return listOfComponents.remove(component);
     }
 
@@ -42,13 +42,13 @@ public abstract class CompositeSyntaxStructure implements SyntaxStructure{
 
         StringBuilder result = new StringBuilder();
 
-        for (SyntaxStructure structure: listOfComponents) {
+        for (SyntaxStructure structure : listOfComponents) {
             result.append(structure.getComponent());
         }
         return result.toString();
     }
 
-    public int getNumOfComponents(){
+    public int getNumOfComponents() {
         return listOfComponents.size();
     }
 

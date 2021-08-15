@@ -2,7 +2,7 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
-public class Text extends CompositeSyntaxStructure implements SyntaxStructure{
+public class Text extends CompositeSyntaxStructure implements SyntaxStructure {
 
     private String textType;
 

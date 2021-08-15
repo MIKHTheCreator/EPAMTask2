@@ -2,7 +2,7 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
-public class Word implements SyntaxStructure{
+public class Word implements SyntaxStructure {
 
     private String word;
 
