@@ -19,8 +19,8 @@ public class PunctuationMark implements SyntaxStructure{
     }
 
     @Override
-    public void getStructure() {
-        System.out.print(character + "\s");
+    public void getStructureAsText() {
+        System.out.print(character);
     }
 
     @Override

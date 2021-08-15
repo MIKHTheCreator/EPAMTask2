@@ -23,8 +23,8 @@ public class Word implements SyntaxStructure{
     }
 
     @Override
-    public void getStructure() {
-        System.out.print(word + "\s");
+    public void getStructureAsText() {
+        System.out.print("\s" + word);
     }
 
     @Override
