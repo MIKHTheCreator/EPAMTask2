@@ -1,43 +1,49 @@
 package com.epam.jwd.entity;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class Text extends CompositeSyntaxStructure implements SyntaxStructure {
+public class Text implements SyntaxStructure {
 
-    private String textType;
+    private List<SyntaxStructure> text;
 
-    public Text(String textType, SyntaxStructure... components) {
-        super(components);
-        this.textType = textType;
+    public Text(List<SyntaxStructure> text) {
+        this.text = text;
     }
 
-    public String getTextType() {
-        return textType;
+    public List<SyntaxStructure> getText() {
+        return text;
     }
 
-    public void setTextType(String textType) {
-        this.textType = textType;
+    public void setText(List<SyntaxStructure> text) {
+        this.text = text;
+    }
+
+    @Override
+    public String getComponent() {
+        return text.stream().map(SyntaxStructure::getComponent).collect(Collectors.joining());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Text text = (Text) o;
-        return Objects.equals(textType, text.textType);
+        Text text1 = (Text) o;
+        return Objects.equals(text, text1.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), textType);
+        return Objects.hash(text);
     }
 
     @Override
     public String toString() {
-        return new StringBuilder(super.toString())
-                .append("Type of Text: ")
-                .append(textType)
+        return new StringBuilder("Text: ")
+                .append("'")
+                .append(getComponent())
+                .append("'")
                 .toString();
     }
 }

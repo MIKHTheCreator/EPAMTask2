@@ -19,11 +19,6 @@ public class PunctuationMark implements SyntaxStructure {
     }
 
     @Override
-    public void getStructureAsText() {
-        System.out.print(character);
-    }
-
-    @Override
     public String getComponent() {
         return character;
     }
@@ -43,6 +38,10 @@ public class PunctuationMark implements SyntaxStructure {
 
     @Override
     public String toString() {
-        return character;
+        return new StringBuilder("\nPunctuation Mark: ")
+                .append("'")
+                .append(character)
+                .append("'")
+                .toString();
     }
 }

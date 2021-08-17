@@ -1,43 +1,49 @@
 package com.epam.jwd.entity;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class CodeBlock extends CompositeSyntaxStructure implements SyntaxStructure {
+public class CodeBlock implements SyntaxStructure {
 
-    private String codeBlockLanguage;
+    private List<SyntaxStructure> codeBlock;
 
-    public CodeBlock(String codeBlockLanguage, SyntaxStructure... components) {
-        super(components);
-        this.codeBlockLanguage = codeBlockLanguage;
+    public CodeBlock(List<SyntaxStructure> codeBlock) {
+        this.codeBlock = codeBlock;
     }
 
-    public String getCodeBlockLanguage() {
-        return codeBlockLanguage;
+    public List<SyntaxStructure> getCodeBlock() {
+        return codeBlock;
     }
 
-    public void setCodeBlockLanguage(String codeBlockLanguage) {
-        this.codeBlockLanguage = codeBlockLanguage;
+    public void setCodeBlock(List<SyntaxStructure> codeBlock) {
+        this.codeBlock = codeBlock;
+    }
+
+    @Override
+    public String getComponent() {
+        return codeBlock.stream().map(SyntaxStructure::getComponent).collect(Collectors.joining());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        CodeBlock codeBlock = (CodeBlock) o;
-        return Objects.equals(codeBlockLanguage, codeBlock.codeBlockLanguage);
+        CodeBlock codeBlock1 = (CodeBlock) o;
+        return Objects.equals(codeBlock, codeBlock1.codeBlock);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), codeBlockLanguage);
+        return Objects.hash(codeBlock);
     }
 
     @Override
     public String toString() {
-        return new StringBuilder(super.toString())
-                .append("Code Block Programming Language: ")
-                .append(codeBlockLanguage)
+        return new StringBuilder("Code Block: ")
+                .append("'")
+                .append(getComponent())
+                .append("'")
                 .toString();
     }
 }

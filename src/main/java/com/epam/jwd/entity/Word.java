@@ -18,18 +18,9 @@ public class Word implements SyntaxStructure {
         this.word = word;
     }
 
-    public int getNumOfSymbols() {
-        return word.length();
-    }
-
-    @Override
-    public void getStructureAsText() {
-        System.out.print("\s" + word);
-    }
-
     @Override
     public String getComponent() {
-        return word;
+        return "\s" + word;
     }
 
     @Override
@@ -47,6 +38,10 @@ public class Word implements SyntaxStructure {
 
     @Override
     public String toString() {
-        return word;
+        return new StringBuilder("\nWord: ")
+                .append("'")
+                .append(word)
+                .append("'")
+                .toString();
     }
 }
