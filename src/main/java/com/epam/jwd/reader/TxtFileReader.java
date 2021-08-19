@@ -26,6 +26,7 @@ public class TxtFileReader {
 
         return builder.toString();
     }
+
     public static String getFilePath() {
         System.out.println("Enter file path(.txt files only supported): ");
 
