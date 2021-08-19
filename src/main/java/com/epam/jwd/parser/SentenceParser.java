@@ -1,4 +1,4 @@
-package com.epam.jwd.cor;
+package com.epam.jwd.parser;
 
 import com.epam.jwd.entity.PunctuationMark;
 import com.epam.jwd.entity.SyntaxStructure;
@@ -9,16 +9,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CodeBlockParser extends Parser {
+public class SentenceParser extends Parser{
+
     private static final String WORD_PATTERN = "[\\w\\d]+";
-    private final List<SyntaxStructure> codeBlockList;
+    private final List<SyntaxStructure> sentenceList;
 
     {
-        codeBlockList = new ArrayList<>();
+        sentenceList = new ArrayList<>();
     }
 
     public List<SyntaxStructure> getSentenceList() {
-        return codeBlockList;
+        return sentenceList;
     }
 
     @Override
@@ -28,10 +29,10 @@ public class CodeBlockParser extends Parser {
                 .filter(string -> !string.equals(" "))
                 .collect(Collectors.toList());
         for(String element : parsedStructure){
-            codeBlockList.add(getStructureByType(element));
+            sentenceList.add(getStructureByType(element));
         }
 
-        return codeBlockList;
+        return sentenceList;
     }
 
     private SyntaxStructure getStructureByType(String parsedStructure){

@@ -1,4 +1,4 @@
-package com.epam.jwd.cor;
+package com.epam.jwd.parser;
 
 import com.epam.jwd.entity.CodeBlock;
 import com.epam.jwd.entity.Sentence;

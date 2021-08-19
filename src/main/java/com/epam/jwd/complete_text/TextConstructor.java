@@ -1,7 +1,7 @@
 package com.epam.jwd.complete_text;
 
-import com.epam.jwd.cor.Parser;
-import com.epam.jwd.cor.TextParser;
+import com.epam.jwd.parser.Parser;
+import com.epam.jwd.parser.TextParser;
 import com.epam.jwd.entity.SyntaxStructure;
 import com.epam.jwd.entity.Text;
 import com.epam.jwd.reader.TxtFileReader;
