@@ -20,7 +20,7 @@ public class Word implements SyntaxStructure {
 
     @Override
     public String getComponent() {
-        return "\s" + word;
+        return " " + word;
     }
 
     @Override

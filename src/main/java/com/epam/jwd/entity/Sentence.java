@@ -40,7 +40,7 @@ public class Sentence implements SyntaxStructure {
 
     @Override
     public String toString() {
-        return new StringBuilder("Sentence: ")
+        return new StringBuilder("\nSentence: ")
                 .append("'")
                 .append(getComponent())
                 .append("'")

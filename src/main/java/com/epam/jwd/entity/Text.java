@@ -40,7 +40,7 @@ public class Text implements SyntaxStructure {
 
     @Override
     public String toString() {
-        return new StringBuilder("Text: ")
+        return new StringBuilder("\nText: ")
                 .append("'")
                 .append(getComponent())
                 .append("'")

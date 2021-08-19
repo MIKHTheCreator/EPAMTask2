@@ -15,7 +15,7 @@ public class TextParser extends Parser{
             "[\\w\\d\\(\\)\\-%\\+\\=;:\\\"\\'\\s,\\/\\>\\<\\=]*[\\.\\?\\!:]+\\s+";
     private static final String CODE_BLOCK_PATTERN = "";
     //CODE_BLOCK+SENTENCE_PATTERN
-    private static final String TEXT_PATTERN = "[" + SENTENCE_PATTERN + CODE_BLOCK_PATTERN + "]";
+    private static final String TEXT_PATTERN = SENTENCE_PATTERN;
     private List<SyntaxStructure> componentList;
 
     {
