@@ -18,9 +18,8 @@ public class TextParser {
             "[\\w\\d\\(\\)\\-%\\+\\=;:\\\"\\'\\s,\\/\\>\\<\\=]*[\\.\\?\\!:]+\\s+";
     private static final String CODE_BLOCK_PATTERN = "";
     //CODE_BLOCK+SENTENCE_PATTERN
-    private static final String TEXT_PATTERN = "";
-    private static final String PUNCTUATION_MARK_PATTERN = "[\\.,:;\\-+=!?\\{\\}\\(\\)\\[\\]\\/\\'\\\"\\>\\<\\%]";
-
+    private static final String TEXT_PATTERN = "[" + SENTENCE_PATTERN + CODE_BLOCK_PATTERN + "]";
+    private static final String PUNCTUATION_MARK_PATTERN = "[\\.,:;\\-+=!?\\{\\}\\(\\)\\[\\]\\/\\'\\\"\\>\\<\\%\s]";
 
 
     public static SyntaxStructure getTextObject(String text){
@@ -32,11 +31,11 @@ public class TextParser {
             String textStructure = matcher.group();
 
             if(textStructure.matches(SENTENCE_PATTERN)){
-                String[] structureAsList = textStructure.split(PUNCTUATION_MARK_PATTERN);
+                String[] structureAsList = textStructure.split("\\b");
                 List<SyntaxStructure> sentence = new ArrayList<>();
 
                 for(String part : structureAsList){
-                    if(part.matches(PUNCTUATION_MARK_PATTERN)){
+                    if(part.matches("PUNCTUATION_MARK_PATTERN")){
                         sentence.add(new PunctuationMark(part));
                     } else {
                         sentence.add(new Word(part));
@@ -45,7 +44,7 @@ public class TextParser {
 
                 syntaxStructureList.add(new Sentence(sentence));
             } else {
-                String[] structureAsList = textStructure.split(PUNCTUATION_MARK_PATTERN);
+                String[] structureAsList = textStructure.split("\\b");
                 List<SyntaxStructure> codeBlock = new ArrayList<>();
 
                 for(String part : structureAsList){
