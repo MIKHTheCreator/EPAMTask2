@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class SentenceParser extends Parser{
 
     private static final String WORD_PATTERN = "[\\w\\d]+";
+
     private final List<SyntaxStructure> sentenceList;
 
     {
