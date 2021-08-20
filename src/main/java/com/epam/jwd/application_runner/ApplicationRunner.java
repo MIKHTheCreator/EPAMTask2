@@ -12,7 +12,7 @@ public class ApplicationRunner {
         Text text = (Text) TextConstructor.buildText();
 //        TextHandler.printText();
         System.out.println(TextHandler.findNumOfSentencesWithEqualsWords(text));
-
+        TextHandler.getSentencesByWordIncreasing(text);
 
     }
 }

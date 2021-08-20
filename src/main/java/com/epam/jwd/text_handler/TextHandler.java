@@ -6,13 +6,12 @@ import com.epam.jwd.entity.Text;
 import com.epam.jwd.entity.Word;
 import com.epam.jwd.text_builder.TextConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TextHandler {
-
-    private static String ERROR_MESSAGE = "The operation isn't supported for such a structure";
 
     public static String getTextAsString(){
         return TextConstructor.buildText().getComponent();
@@ -50,5 +49,21 @@ public class TextHandler {
 
     private static boolean isSentence(SyntaxStructure structure){
         return structure instanceof Sentence;
+    }
+
+    public static void getSentencesByWordIncreasing(Text text){
+        List<SyntaxStructure> sentences = new ArrayList<>();
+
+        for(SyntaxStructure sentence : text.getText()){
+            if(isSentence(sentence)){
+                sentences.add(sentence);
+            }
+        }
+
+        sentences.sort((s1, s2) -> getSentenceWords((Sentence) s1).size() - getSentenceWords((Sentence) s2).size());
+        sentences
+                .forEach(sentence ->System.out.println("Sentence: " + sentence.getComponent()
+                        .trim()
+                        .replaceAll("\n", " ")));
     }
 }
