@@ -13,8 +13,4 @@ public class TextConstructor {
 
         return new Text(parser.parse(TxtFileReader.getFileText()));
     }
-
-    public static String getText(){
-        return getTextAsObject().getComponent();
-    }
 }
