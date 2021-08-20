@@ -11,10 +11,7 @@ import java.util.regex.Pattern;
 
 public class TextParser extends Parser{
 
-    private static final String SENTENCE_PATTERN = "[A-Z]+" +
-            "[\\w\\d()\\-%+=;:\"'\\s,/><=]*[.?!:]+\\s+";
-    private static final String CODE_BLOCK_PATTERN = "";
-    //CODE_BLOCK+SENTENCE_PATTERN
+    private static final String SENTENCE_PATTERN = "[A-Z]+[\\w\\d()\\-%+=;:\"'\s,/>’“”<]*[.?!:]+[\s]*";
     private static final String TEXT_PATTERN = "[^.!?]*[.!?]";
     private final List<SyntaxStructure> componentList;
 
