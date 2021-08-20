@@ -22,7 +22,10 @@ public class CodeBlock implements SyntaxStructure {
 
     @Override
     public String getComponent() {
-        return codeBlock.stream().map(SyntaxStructure::getComponent).collect(Collectors.joining());
+        return codeBlock
+                .stream()
+                .map(SyntaxStructure::getComponent)
+                .collect(Collectors.joining());
     }
 
     @Override

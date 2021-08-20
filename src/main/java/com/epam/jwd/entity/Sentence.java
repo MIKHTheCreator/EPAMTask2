@@ -22,7 +22,10 @@ public class Sentence implements SyntaxStructure {
 
     @Override
     public String getComponent() {
-        return sentence.stream().map(SyntaxStructure::getComponent).collect(Collectors.joining());
+        return sentence
+                .stream()
+                .map(SyntaxStructure::getComponent)
+                .collect(Collectors.joining());
     }
 
     @Override

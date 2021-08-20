@@ -22,7 +22,10 @@ public class Text implements SyntaxStructure {
 
     @Override
     public String getComponent() {
-        return text.stream().map(SyntaxStructure::getComponent).collect(Collectors.joining());
+        return text
+                .stream()
+                .map(SyntaxStructure::getComponent)
+                .collect(Collectors.joining());
     }
 
     @Override
