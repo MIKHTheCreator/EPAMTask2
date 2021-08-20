@@ -52,6 +52,16 @@ public class TextHandler {
     }
 
     public static void getSentencesByWordIncreasing(Text text){
+        List<SyntaxStructure> sentences = getSentences(text);
+
+        sentences.sort((s1, s2) -> getSentenceWords((Sentence) s1).size() - getSentenceWords((Sentence) s2).size());
+        sentences
+                .forEach(sentence ->System.out.println("Sentence: " + sentence.getComponent()
+                        .trim()
+                        .replaceAll("\n", " ")));
+    }
+
+    private static List<SyntaxStructure> getSentences(Text text){
         List<SyntaxStructure> sentences = new ArrayList<>();
 
         for(SyntaxStructure sentence : text.getText()){
@@ -59,11 +69,6 @@ public class TextHandler {
                 sentences.add(sentence);
             }
         }
-
-        sentences.sort((s1, s2) -> getSentenceWords((Sentence) s1).size() - getSentenceWords((Sentence) s2).size());
-        sentences
-                .forEach(sentence ->System.out.println("Sentence: " + sentence.getComponent()
-                        .trim()
-                        .replaceAll("\n", " ")));
+        return sentences;
     }
 }
