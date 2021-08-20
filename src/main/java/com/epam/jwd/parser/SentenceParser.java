@@ -29,17 +29,9 @@ public class SentenceParser extends Parser{
                 .stream(structure.split("\\b"))
                 .collect(Collectors.toList());
         for(String element : parsedStructure){
-            sentenceList.add(getStructureByType(element));
+            sentenceList.add(getStructureByType(element, WORD_PATTERN));
         }
 
         return sentenceList;
-    }
-
-    private SyntaxStructure getStructureByType(String parsedStructure){
-        if(parsedStructure.matches(WORD_PATTERN)){
-            return new Word(parsedStructure);
-        }
-
-        return new PunctuationMark(parsedStructure);
     }
 }

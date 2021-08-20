@@ -27,17 +27,9 @@ public class CodeBlockParser extends Parser {
                 .stream(structure.split("\\b"))
                 .collect(Collectors.toList());
         for(String element : parsedStructure){
-            codeBlockList.add(getStructureByType(element));
+            codeBlockList.add(getStructureByType(element, WORD_PATTERN));
         }
 
         return codeBlockList;
-    }
-
-    private SyntaxStructure getStructureByType(String parsedStructure){
-        if(parsedStructure.matches(WORD_PATTERN)){
-            return new Word(parsedStructure);
-        }
-
-        return new PunctuationMark(parsedStructure);
     }
 }
