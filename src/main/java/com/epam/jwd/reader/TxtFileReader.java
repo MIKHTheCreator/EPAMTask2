@@ -46,7 +46,7 @@ public class TxtFileReader {
             path = scan.nextLine();
             try {
                 if (path.trim().equalsIgnoreCase(EXIT_COMMAND)) {
-                    System.exit(1);
+                    Menu.exit();
                 } else if (FIRST_TEST_FILE.equals(path)) {
                     path = "Test.txt";
                     break;

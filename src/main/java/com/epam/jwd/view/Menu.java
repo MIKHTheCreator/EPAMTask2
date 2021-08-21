@@ -7,7 +7,8 @@ public class Menu {
             "Write 1 or 2 to choose our files or write your file path./";
     private static final String MENU_MESSAGE = "Choose one of supported methods(write a number):\n" +
             "1-*print text*||2-*find number of sentences with equal words*\n" +
-            "3-*get sentences by word increasing*||4-*find exclusive word in first sentence*";
+            "3-*get sentences by word increasing*||4-*find exclusive word in first sentence*\n" +
+            "5-*exit*";
     public static final String DELIMITER = "/===========================================\\";
 
     public static void printStartMessage() {
@@ -18,5 +19,9 @@ public class Menu {
         System.out.println(DELIMITER);
         System.out.println(MENU_MESSAGE);
         System.out.println(DELIMITER);
+    }
+
+    public static void exit(){
+        System.exit(1);
     }
 }

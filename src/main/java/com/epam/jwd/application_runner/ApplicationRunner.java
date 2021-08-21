@@ -15,14 +15,6 @@ public class ApplicationRunner {
         Text text = readFileToTextObject();
         Menu.getStartMenu();
 
-        TextHandler.printText(text);
-        System.out.println("=======================");
-        System.out.println(TextHandler.findNumOfSentencesWithEqualsWords(text));
-        System.out.println("=======================");
-        TextHandler.getSentencesByWordIncreasing(text);
-        System.out.println("=======================");
-        System.out.println(TextHandler.findExclusiveWord(text));
-
     }
 
     public static Text readFileToTextObject(){
