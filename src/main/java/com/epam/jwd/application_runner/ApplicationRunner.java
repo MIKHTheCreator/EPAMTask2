@@ -11,7 +11,7 @@ public class ApplicationRunner {
 
     public static void main(String[] args) {
 
-        Text text = start();
+        Text text = readFileToTextObject();
 
         TextHandler.printText(text);
         System.out.println("=======================");
@@ -23,7 +23,7 @@ public class ApplicationRunner {
 
     }
 
-    public static Text start(){
+    public static Text readFileToTextObject(){
         Parser parser = new TextParser();
 
         return new Text(parser.parse(TxtFileReader.getFileText()));
