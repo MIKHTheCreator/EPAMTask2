@@ -1,64 +1,14 @@
 package com.epam.jwd.entity;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class Sentence implements SyntaxStructure {
+public class Sentence extends CompositeStructure {
 
-    private List<SyntaxStructure> sentence;
-
-    public Sentence(List<SyntaxStructure> sentence) {
-        this.sentence = sentence;
+    public Sentence(List<SyntaxStructure> componentList) {
+        super(componentList);
     }
 
-    public List<SyntaxStructure> getSentence() {
-        return sentence;
-    }
-
-    public void setSentence(List<SyntaxStructure> sentence) {
-        this.sentence = sentence;
-    }
-
-    public boolean removeComponent(SyntaxStructure structure){
-        return sentence.remove(structure);
-    }
-
-    public SyntaxStructure removeComponent(int index){
-        return sentence.remove(index);
-    }
-
-    public boolean addComponent(SyntaxStructure structure){
-        return sentence.add(structure);
-    }
-
-    @Override
-    public String getComponent() {
-        return sentence
-                .stream()
-                .map(SyntaxStructure::getComponent)
-                .collect(Collectors.joining());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Sentence sentence1 = (Sentence) o;
-        return Objects.equals(sentence, sentence1.sentence);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(sentence);
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder("\nSentence: ")
-                .append("'")
-                .append(getComponent())
-                .append("'")
-                .toString();
+    public int getNumOfSentenceElements(){
+        return super.getComponentList().size();
     }
 }

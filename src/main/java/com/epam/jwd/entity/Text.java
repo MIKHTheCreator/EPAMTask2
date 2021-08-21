@@ -2,63 +2,48 @@ package com.epam.jwd.entity;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class Text implements SyntaxStructure {
+public class Text extends CompositeStructure {
 
-    private List<SyntaxStructure> text;
+    private static final String DEFAULT_TEXT_TYPE = "programming text";
+    private String textType;
 
-    public Text(List<SyntaxStructure> text) {
-        this.text = text;
+    public Text(List<SyntaxStructure> componentList) {
+        super(componentList);
     }
 
-    public List<SyntaxStructure> getText() {
-        return text;
+    public String getTextType() {
+        if ("".equals(textType)) {
+            return DEFAULT_TEXT_TYPE;
+        }
+
+        return textType;
     }
 
-    public void setText(List<SyntaxStructure> text) {
-        this.text = text;
-    }
-
-    public boolean removeComponent(SyntaxStructure structure){
-        return text.remove(structure);
-    }
-
-    public SyntaxStructure removeComponent(int index){
-        return text.remove(index);
-    }
-
-    public boolean addComponent(SyntaxStructure structure){
-        return text.add(structure);
-    }
-
-    @Override
-    public String getComponent() {
-        return text
-                .stream()
-                .map(SyntaxStructure::getComponent)
-                .collect(Collectors.joining());
+    public void setTextType(String textType) {
+        this.textType = textType;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Text text1 = (Text) o;
-        return Objects.equals(text, text1.text);
+        if (!super.equals(o)) return false;
+        Text text = (Text) o;
+        return Objects.equals(textType, text.textType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(text);
+        return Objects.hash(super.hashCode(), textType);
     }
 
     @Override
     public String toString() {
-        return new StringBuilder("\nText: ")
-                .append("'")
-                .append(getComponent())
-                .append("'")
+        return new StringBuilder("\n")
+                .append(super.toString())
+                .append("textType=")
+                .append(textType)
                 .toString();
     }
 }

@@ -23,7 +23,7 @@ public class TextHandler {
 
     public static int findNumOfSentencesWithEqualsWords(Text text) {
         int numOfSentences = 0;
-        for (SyntaxStructure sentence : text.getText()) {
+        for (SyntaxStructure sentence : text.getComponentList()) {
             if (isSentence(sentence)) {
                 if (hasEqualWords(getSentenceWords((Sentence) sentence))) {
                     numOfSentences++;
@@ -35,7 +35,7 @@ public class TextHandler {
     }
 
     private static List<SyntaxStructure> getSentenceWords(Sentence sentence) {
-        return sentence.getSentence()
+        return sentence.getComponentList()
                 .stream()
                 .filter(structure -> structure instanceof Word)
                 .collect(Collectors.toList());
@@ -63,7 +63,7 @@ public class TextHandler {
     private static List<SyntaxStructure> getSentences(Text text) {
         List<SyntaxStructure> sentences = new ArrayList<>();
 
-        for (SyntaxStructure sentence : text.getText()) {
+        for (SyntaxStructure sentence : text.getComponentList()) {
             if (isSentence(sentence)) {
                 sentences.add(sentence);
             }
