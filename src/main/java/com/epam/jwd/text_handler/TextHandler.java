@@ -45,7 +45,7 @@ public class TextHandler {
         return structure instanceof Sentence;
     }
 
-    public static void getSentencesByWordIncreasing(Text text) {
+    public static void printSentencesByWordIncreasing(Text text) {
         List<SyntaxStructure> sentences = getSentences(text);
 
         sentences.sort((s1, s2) -> getSentenceWords((Sentence) s1).size() - getSentenceWords((Sentence) s2).size());

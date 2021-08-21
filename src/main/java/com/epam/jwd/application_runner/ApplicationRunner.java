@@ -4,7 +4,6 @@ import com.epam.jwd.entity.Text;
 import com.epam.jwd.parser.Parser;
 import com.epam.jwd.parser.TextParser;
 import com.epam.jwd.reader.TxtFileReader;
-import com.epam.jwd.text_handler.TextHandler;
 import com.epam.jwd.view.Menu;
 
 
@@ -13,7 +12,7 @@ public class ApplicationRunner {
     public static void main(String[] args) {
 
         Text text = readFileToTextObject();
-        Menu.getStartMenu();
+        Menu.runMenu(text);
 
     }
 
