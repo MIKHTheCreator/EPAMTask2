@@ -1,6 +1,7 @@
 package com.epam.jwd.reader;
 
 import com.epam.jwd.exception.UnsupportedFileFormatException;
+import com.epam.jwd.view.Menu;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -19,6 +20,8 @@ public class TxtFileReader {
     private static final String FILE_NOT_FOUND_MESSAGE = "Write path again or enter exit to close the programme: ";
 
     public static String getFileText(){
+
+        Menu.getStartMessage();
         StringBuilder builder = new StringBuilder();
 
         try{
