@@ -2,6 +2,7 @@ package com.epam.jwd.reader;
 
 import com.epam.jwd.exception.UnsupportedFileFormatException;
 import com.epam.jwd.view.Menu;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -13,6 +14,8 @@ import java.util.Scanner;
 import static com.epam.jwd.validation.FilePathValidation.isAvailableFilePath;
 
 public class TxtFileReader {
+
+    private static final Logger log = Logger.getLogger(TxtFileReader.class);
 
     private static final String EXIT_COMMAND = "exit";
     private static final String FIRST_TEST_FILE = "1";
@@ -29,7 +32,7 @@ public class TxtFileReader {
         try {
             readTextFromFile(getFilePath(), builder);
         } catch (IOException ex) {
-//            Logging
+            log.error("IOException has been caught:" + ex.getMessage());
             System.out.println(ex.getMessage());
         }
 
@@ -49,19 +52,23 @@ public class TxtFileReader {
                     Menu.exit();
                 } else if (FIRST_TEST_FILE.equals(path)) {
                     path = "Test.txt";
+                    log.info("Test.txt file has been chosen");
                     break;
                 } else if (SECOND_TEST_FILE.equals(path)) {
                     path = "Test2.txt";
+                    log.info("Test2.txt file has been chosen");
                     break;
                 } else if (isAvailableFilePath(path.trim())) {
+                    log.info("User's file has been chosen: " + path);
                     break;
                 }
-            } catch (UnsupportedFileFormatException exception) {
-//                Logging
-                System.out.println(exception.getMessage());
+            } catch (UnsupportedFileFormatException ex) {
+                log.error("UnsupportedFileFormatException has been caught: " + ex.getMessage());
+                System.out.println(ex.getMessage());
                 System.out.println(UNSUPPORTED_FILE_FORMAT_MESSAGE);
-            } catch (FileNotFoundException exception) {
-                System.out.println(exception.getMessage());
+            } catch (FileNotFoundException ex) {
+                log.error("FileNotFound has been caught: " + ex.getMessage());
+                System.out.println(ex.getMessage());
                 System.out.println(FILE_NOT_FOUND_MESSAGE);
             }
         }
@@ -69,14 +76,16 @@ public class TxtFileReader {
         return path;
     }
 
-    private static void readTextFromFile(String filePath, StringBuilder buffer) throws IOException {
+    private static void readTextFromFile(String filePath, StringBuilder builder) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
                 new FileInputStream(filePath)))) {
 
             String fileText;
             while ((fileText = reader.readLine()) != null) {
-                buffer.append(fileText).append("\n");
+                builder.append(fileText).append("\n");
             }
         }
+
+        log.info("TextFile has been read");
     }
 }

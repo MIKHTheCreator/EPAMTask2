@@ -6,7 +6,6 @@ import com.epam.jwd.parser.TextParser;
 import com.epam.jwd.reader.TxtFileReader;
 import com.epam.jwd.view.Menu;
 
-
 public class ApplicationRunner {
 
     public static void main(String[] args) {

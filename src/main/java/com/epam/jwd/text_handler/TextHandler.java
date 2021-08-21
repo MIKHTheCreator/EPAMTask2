@@ -4,6 +4,7 @@ import com.epam.jwd.entity.Sentence;
 import com.epam.jwd.entity.SyntaxStructure;
 import com.epam.jwd.entity.Text;
 import com.epam.jwd.entity.Word;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,7 +13,10 @@ import java.util.stream.Collectors;
 
 public class TextHandler {
 
+    private static final Logger log = Logger.getLogger(TextHandler.class);
+
     public static void printText(Text text) {
+        log.info("Printing text...");
         System.out.println(text.getComponent());
     }
 
@@ -22,6 +26,7 @@ public class TextHandler {
             if (isSentence(sentence)) {
                 if (hasEqualWords(getSentenceWords((Sentence) sentence))) {
                     numOfSentences++;
+                    log.info("Sentence with equal word has been found. Num of such sentences: " + numOfSentences);
                 }
             }
         }
@@ -30,6 +35,7 @@ public class TextHandler {
     }
 
     private static List<SyntaxStructure> getSentenceWords(Sentence sentence) {
+        log.info("Getting Sentence wordList...");
         return sentence.getComponentList()
                 .stream()
                 .filter(structure -> structure instanceof Word)
@@ -38,16 +44,20 @@ public class TextHandler {
 
     private static boolean hasEqualWords(List<SyntaxStructure> sentenceWords) {
 
+        log.info("hasEqualWords method works...");
         return new HashSet<>(sentenceWords).size() < sentenceWords.size();
     }
 
     private static boolean isSentence(SyntaxStructure structure) {
+
+        log.info("isSentence method works...");
         return structure instanceof Sentence;
     }
 
     public static void printSentencesByWordIncreasing(Text text) {
         List<SyntaxStructure> sentences = getSentences(text);
 
+        log.info("Printing sentences by word amount increasing");
         sentences.sort((s1, s2) -> getSentenceWords((Sentence) s1).size() - getSentenceWords((Sentence) s2).size());
         sentences
                 .forEach(sentence -> System.out.println("Sentence: " + sentence.getComponent()
@@ -60,6 +70,7 @@ public class TextHandler {
 
         for (SyntaxStructure sentence : text.getComponentList()) {
             if (isSentence(sentence)) {
+                log.info("Putting sentence to sentences list.");
                 sentences.add(sentence);
             }
         }
@@ -70,6 +81,7 @@ public class TextHandler {
         String exclusiveWord = "There is no exclusive words in first sentence!";
         List<SyntaxStructure> firstSentenceWords = getSentenceWords((Sentence) getSentences(text).get(0));
 
+        log.info("Removing first sentence");
         text.removeComponent(0);
         String textAsString = text.getComponent();
         for (SyntaxStructure structure : firstSentenceWords) {
@@ -79,12 +91,14 @@ public class TextHandler {
                 continue;
             }
             exclusiveWord = word;
+            log.info("Exclusive word has been found: " + exclusiveWord);
         }
 
         return exclusiveWord;
     }
 
     private static boolean hasComponentInSyntaxStructure(String structure, String component) {
+        log.info("hasComponentInSyntaxStructure method works...");
         return structure.contains(component);
     }
 }

@@ -1,7 +1,9 @@
 package com.epam.jwd.entity;
 
+
 import java.util.List;
 import java.util.Objects;
+
 
 public class CodeBlock extends CompositeStructure {
 
