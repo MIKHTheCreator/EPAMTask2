@@ -20,6 +20,18 @@ public class Sentence implements SyntaxStructure {
         this.sentence = sentence;
     }
 
+    public boolean removeComponent(SyntaxStructure structure){
+        return sentence.remove(structure);
+    }
+
+    public SyntaxStructure removeComponent(int index){
+        return sentence.remove(index);
+    }
+
+    public boolean addComponent(SyntaxStructure structure){
+        return sentence.add(structure);
+    }
+
     @Override
     public String getComponent() {
         return sentence

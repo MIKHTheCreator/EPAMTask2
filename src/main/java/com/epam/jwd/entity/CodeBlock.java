@@ -20,6 +20,18 @@ public class CodeBlock implements SyntaxStructure {
         this.codeBlock = codeBlock;
     }
 
+    public boolean removeComponent(SyntaxStructure structure){
+        return codeBlock.remove(structure);
+    }
+
+    public SyntaxStructure removeComponent(int index){
+        return codeBlock.remove(index);
+    }
+
+    public boolean addComponent(SyntaxStructure structure){
+        return codeBlock.add(structure);
+    }
+
     @Override
     public String getComponent() {
         return codeBlock

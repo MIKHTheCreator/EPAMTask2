@@ -20,6 +20,18 @@ public class Text implements SyntaxStructure {
         this.text = text;
     }
 
+    public boolean removeComponent(SyntaxStructure structure){
+        return text.remove(structure);
+    }
+
+    public SyntaxStructure removeComponent(int index){
+        return text.remove(index);
+    }
+
+    public boolean addComponent(SyntaxStructure structure){
+        return text.add(structure);
+    }
+
     @Override
     public String getComponent() {
         return text
