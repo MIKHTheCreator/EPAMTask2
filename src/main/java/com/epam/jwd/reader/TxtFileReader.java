@@ -15,13 +15,15 @@ import static com.epam.jwd.validation.FilePathValidation.isAvailableFilePath;
 public class TxtFileReader {
 
     private static final String EXIT_COMMAND = "exit";
+    private static final String FIRST_TEST_FILE = "1";
+    private static final String SECOND_TEST_FILE = "2";
     private static final String START_MESSAGE = "Enter file path(.txt files only supported): ";
     private static final String UNSUPPORTED_FILE_FORMAT_MESSAGE = "Choose .txt file or enter exit to close the programme: ";
     private static final String FILE_NOT_FOUND_MESSAGE = "Write path again or enter exit to close the programme: ";
 
     public static String getFileText(){
 
-        Menu.getStartMessage();
+        Menu.printStartMessage();
         StringBuilder builder = new StringBuilder();
 
         try{
@@ -45,7 +47,14 @@ public class TxtFileReader {
             try{
                 if(path.trim().equalsIgnoreCase(EXIT_COMMAND)){
                     System.exit(1);
-                } else if (isAvailableFilePath(path.trim())) {
+                } else if(FIRST_TEST_FILE.equals(path)){
+                    path = "Test.txt";
+                    break;
+                }else if(SECOND_TEST_FILE.equals(path)){
+                    path = "Test2.txt";
+                    break;
+                }
+                else if (isAvailableFilePath(path.trim())) {
                     break;
                 }
             }catch (UnsupportedFileFormatException exception){

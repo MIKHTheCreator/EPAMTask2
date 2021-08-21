@@ -10,7 +10,7 @@ public class TextConstructor {
 
     public static SyntaxStructure buildText(){
         Parser parser = new TextParser();
-        System.out.println("TextBuilder run");
+
         return new Text(parser.parse(TxtFileReader.getFileText()));
     }
 }
