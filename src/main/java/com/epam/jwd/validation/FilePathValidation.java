@@ -11,7 +11,7 @@ public class FilePathValidation {
     private static final String FILE_NOT_FOUND_EXCEPTION_MESSAGE = "File with such name isn't found";
     private static final String FILE_PATH_PATTERN = "([A-Z]:)?[/\\\\].*\\.txt";
 
-    public static boolean isTxtFilePath(String path)
+    public static boolean isAvailableFilePath(String path)
             throws UnsupportedFileFormatException, FileNotFoundException {
 
         if(new File(path).exists()){

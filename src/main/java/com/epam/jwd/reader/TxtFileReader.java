@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-import static com.epam.jwd.validation.FilePathValidation.isTxtFilePath;
+import static com.epam.jwd.validation.FilePathValidation.isAvailableFilePath;
 
 public class TxtFileReader {
 
@@ -42,7 +42,7 @@ public class TxtFileReader {
             try{
                 if(path.trim().equalsIgnoreCase(EXIT_COMMAND)){
                     System.exit(1);
-                } else if (isTxtFilePath(path.trim())) {
+                } else if (isAvailableFilePath(path.trim())) {
                     break;
                 }
             }catch (UnsupportedFileFormatException exception){
