@@ -7,13 +7,17 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static final String WELCOME_MESSAGE = "===TEXTEDITOR WELCOMES YOU===\n" +
-            "/You can choose your own file or take one of our test files\n" +
-            "Write 1 or 2 to choose our files or write your file path./";
-    private static final String MENU_MESSAGE = "Choose one of supported methods(write a number):\n" +
-            "||1-*print text*\n||2-*find number of sentences with equal words*\n||" +
-            "3-*get sentences by word increasing*\n||4-*find exclusive word in first sentence*\n||" +
-            "5-*exit*";
+    private static final String WELCOME_MESSAGE = """
+            ===TEXTEDITOR WELCOMES YOU===
+            /You can choose your own file or take one of our test files
+            Write 1 or 2 to choose our files or write your file path./""";
+    private static final String MENU_MESSAGE = """
+            Choose one of supported methods(write a number):
+            ||1-*print text*
+            ||2-*find number of sentences with equal words*
+            ||3-*get sentences by word increasing*
+            ||4-*find exclusive word in first sentence*
+            ||5-*exit*""";
     private static final String DELIMITER = "/===========================================\\";
 
     public static void printStartMessage() {
