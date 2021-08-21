@@ -10,9 +10,13 @@ public class ApplicationRunner {
     public static void main(String[] args) {
 
         Text text = (Text) TextConstructor.buildText();
-//        TextHandler.printText();
+        TextHandler.printText();
+        System.out.println("=======================");
         System.out.println(TextHandler.findNumOfSentencesWithEqualsWords(text));
+        System.out.println("=======================");
         TextHandler.getSentencesByWordIncreasing(text);
+        System.out.println("=======================");
+        System.out.println(TextHandler.findExclusiveWord(text));
 
     }
 }
