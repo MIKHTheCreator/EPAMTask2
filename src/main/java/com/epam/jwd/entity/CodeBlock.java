@@ -3,7 +3,7 @@ package com.epam.jwd.entity;
 import java.util.List;
 import java.util.Objects;
 
-public class CodeBlock extends AbstractCompositeStructure {
+public class CodeBlock extends CompositeStructure {
 
     private static final String DEFAULT_CODE_BLOCK_LANGUAGE = "undefined";
     private String codeBlockLanguage;

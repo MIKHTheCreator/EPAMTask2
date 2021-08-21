@@ -3,7 +3,7 @@ package com.epam.jwd.entity;
 import java.util.List;
 import java.util.Objects;
 
-public class Text extends AbstractCompositeStructure {
+public class Text extends CompositeStructure {
 
     private static final String DEFAULT_TEXT_TYPE = "programming text";
     private String textType;
