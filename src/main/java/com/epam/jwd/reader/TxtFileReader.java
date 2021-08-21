@@ -4,6 +4,7 @@ import com.epam.jwd.exception.UnsupportedFileFormatException;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -13,6 +14,9 @@ import static com.epam.jwd.validation.FilePathValidation.isTxtFilePath;
 public class TxtFileReader {
 
     private static final String EXIT_COMMAND = "exit";
+    private static final String START_MESSAGE = "Enter file path(.txt files only supported): ";
+    private static final String UNSUPPORTED_FILE_FORMAT_MESSAGE = "Choose .txt file or enter exit to close the programme: ";
+    private static final String FILE_NOT_FOUND_MESSAGE = "Write path again or enter exit to close the programme: ";
 
     public static String getFileText(){
         StringBuilder builder = new StringBuilder();
@@ -28,7 +32,7 @@ public class TxtFileReader {
     }
 
     public static String getFilePath() {
-        System.out.println("Enter file path(.txt files only supported): ");
+        System.out.println(START_MESSAGE);
 
         Scanner scan = new Scanner(System.in);
         String path = "";
@@ -44,7 +48,10 @@ public class TxtFileReader {
             }catch (UnsupportedFileFormatException exception){
 //                Logging
                 System.out.println(exception.getMessage());
-                System.out.println("Try to write path again or enter exit to close the programme: ");
+                System.out.println(UNSUPPORTED_FILE_FORMAT_MESSAGE);
+            }catch (FileNotFoundException exception){
+                System.out.println(exception.getMessage());
+                System.out.println(FILE_NOT_FOUND_MESSAGE);
             }
         }
 
