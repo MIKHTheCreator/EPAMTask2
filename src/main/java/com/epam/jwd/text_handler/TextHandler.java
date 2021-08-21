@@ -4,7 +4,6 @@ import com.epam.jwd.entity.Sentence;
 import com.epam.jwd.entity.SyntaxStructure;
 import com.epam.jwd.entity.Text;
 import com.epam.jwd.entity.Word;
-import com.epam.jwd.text_builder.TextConstructor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,12 +12,8 @@ import java.util.stream.Collectors;
 
 public class TextHandler {
 
-    public static String getTextAsString() {
-        return TextConstructor.buildText().getComponent();
-    }
-
-    public static void printText() {
-        System.out.println(getTextAsString());
+    public static void printText(Text text) {
+        System.out.println(text.getComponent());
     }
 
     public static int findNumOfSentencesWithEqualsWords(Text text) {
