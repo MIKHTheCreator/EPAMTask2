@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class CompositeStructure implements SyntaxStructure{
+public abstract class AbstractCompositeStructure implements SyntaxStructure{
 
     private List<SyntaxStructure> componentList;
 
-    public CompositeStructure(List<SyntaxStructure> componentList) {
+    public AbstractCompositeStructure(List<SyntaxStructure> componentList) {
         this.componentList = componentList;
     }
 
@@ -44,7 +44,7 @@ public class CompositeStructure implements SyntaxStructure{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CompositeStructure that = (CompositeStructure) o;
+        AbstractCompositeStructure that = (AbstractCompositeStructure) o;
         return Objects.equals(componentList, that.componentList);
     }
 
