@@ -26,7 +26,7 @@ public class CodeBlockParser extends Parser {
         List<String> parsedStructure = Arrays
                 .stream(structure.split("\\b"))
                 .collect(Collectors.toList());
-        for(String element : parsedStructure){
+        for (String element : parsedStructure) {
             codeBlockList.add(getStructureByType(element, WORD_PATTERN));
         }
 

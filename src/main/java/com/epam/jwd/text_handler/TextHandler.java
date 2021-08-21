@@ -77,10 +77,10 @@ public class TextHandler {
 
         text.removeComponent(0);
         String textAsString = text.getComponent();
-        for(SyntaxStructure structure : firstSentenceWords){
+        for (SyntaxStructure structure : firstSentenceWords) {
 
             String word = structure.getComponent();
-            if(hasComponentInSyntaxStructure(textAsString, word)){
+            if (hasComponentInSyntaxStructure(textAsString, word)) {
                 continue;
             }
             exclusiveWord = word;
@@ -89,7 +89,7 @@ public class TextHandler {
         return exclusiveWord;
     }
 
-    private static boolean hasComponentInSyntaxStructure(String structure, String component){
+    private static boolean hasComponentInSyntaxStructure(String structure, String component) {
         return structure.contains(component);
     }
 }

@@ -21,14 +21,14 @@ public class TxtFileReader {
     private static final String UNSUPPORTED_FILE_FORMAT_MESSAGE = "Choose .txt file or enter exit to close the programme: ";
     private static final String FILE_NOT_FOUND_MESSAGE = "Write path again or enter exit to close the programme: ";
 
-    public static String getFileText(){
+    public static String getFileText() {
 
         Menu.printStartMessage();
         StringBuilder builder = new StringBuilder();
 
-        try{
+        try {
             readTextFromFile(getFilePath(), builder);
-        }catch (IOException ex){
+        } catch (IOException ex) {
 //            Logging
             System.out.println(ex.getMessage());
         }
@@ -42,26 +42,25 @@ public class TxtFileReader {
         Scanner scan = new Scanner(System.in);
         String path = "";
 
-        while(scan.hasNext()){
+        while (scan.hasNext()) {
             path = scan.nextLine();
-            try{
-                if(path.trim().equalsIgnoreCase(EXIT_COMMAND)){
+            try {
+                if (path.trim().equalsIgnoreCase(EXIT_COMMAND)) {
                     System.exit(1);
-                } else if(FIRST_TEST_FILE.equals(path)){
+                } else if (FIRST_TEST_FILE.equals(path)) {
                     path = "Test.txt";
                     break;
-                }else if(SECOND_TEST_FILE.equals(path)){
+                } else if (SECOND_TEST_FILE.equals(path)) {
                     path = "Test2.txt";
                     break;
-                }
-                else if (isAvailableFilePath(path.trim())) {
+                } else if (isAvailableFilePath(path.trim())) {
                     break;
                 }
-            }catch (UnsupportedFileFormatException exception){
+            } catch (UnsupportedFileFormatException exception) {
 //                Logging
                 System.out.println(exception.getMessage());
                 System.out.println(UNSUPPORTED_FILE_FORMAT_MESSAGE);
-            }catch (FileNotFoundException exception){
+            } catch (FileNotFoundException exception) {
                 System.out.println(exception.getMessage());
                 System.out.println(FILE_NOT_FOUND_MESSAGE);
             }
@@ -71,7 +70,7 @@ public class TxtFileReader {
     }
 
     private static void readTextFromFile(String filePath, StringBuilder buffer) throws IOException {
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
                 new FileInputStream(filePath)))) {
 
             String fileText;

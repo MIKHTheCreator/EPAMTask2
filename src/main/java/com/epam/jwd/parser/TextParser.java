@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextParser extends Parser{
+public class TextParser extends Parser {
 
     private static final String SENTENCE_PATTERN = "\\s*[A-Z]+[\\w\\d()\\-%+=;:\\\"'\\s,/>’“”<]*[.?!]+[\\s]*";
     private static final String TEXT_PATTERN = "[^.!?]*[.!?]";
@@ -28,9 +28,9 @@ public class TextParser extends Parser{
         Pattern pattern = Pattern.compile(TEXT_PATTERN);
         Matcher matcher = pattern.matcher(structure);
 
-        while (matcher.find()){
+        while (matcher.find()) {
             String parsedStructure = matcher.group();
-            if(parsedStructure.matches(SENTENCE_PATTERN)){
+            if (parsedStructure.matches(SENTENCE_PATTERN)) {
                 Parser nextParser = this.setNextParser(new SentenceParser());
                 Sentence sentence = new Sentence(nextParser.parse(parsedStructure));
                 componentList.add(sentence);

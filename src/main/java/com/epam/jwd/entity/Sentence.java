@@ -8,7 +8,7 @@ public class Sentence extends CompositeStructure {
         super(componentList);
     }
 
-    public int getNumOfSentenceElements(){
+    public int getNumOfSentenceElements() {
         return super.getComponentList().size();
     }
 }

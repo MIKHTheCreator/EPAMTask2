@@ -8,7 +8,7 @@ import com.epam.jwd.reader.TxtFileReader;
 
 public class TextConstructor {
 
-    public static SyntaxStructure buildText(){
+    public static SyntaxStructure buildText() {
         Parser parser = new TextParser();
 
         return new Text(parser.parse(TxtFileReader.getFileText()));

@@ -21,8 +21,8 @@ public abstract class Parser {
 
     public abstract List<SyntaxStructure> parse(String structure);
 
-    protected SyntaxStructure getStructureByType(String parsedStructure, String pattern){
-        if(parsedStructure.matches(pattern)){
+    protected SyntaxStructure getStructureByType(String parsedStructure, String pattern) {
+        if (parsedStructure.matches(pattern)) {
             return new Word(parsedStructure);
         }
 

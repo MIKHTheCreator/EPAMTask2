@@ -14,8 +14,8 @@ public class FilePathValidation {
     public static boolean isAvailableFilePath(String path)
             throws UnsupportedFileFormatException, FileNotFoundException {
 
-        if(new File(path).exists()){
-            if(path.matches(FILE_PATH_PATTERN)){
+        if (new File(path).exists()) {
+            if (path.matches(FILE_PATH_PATTERN)) {
                 return true;
             } else {
                 throw new UnsupportedFileFormatException(FILE_FORMAT_EXCEPTION_MESSAGE);

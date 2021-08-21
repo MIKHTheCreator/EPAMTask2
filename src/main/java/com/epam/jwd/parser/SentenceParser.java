@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SentenceParser extends Parser{
+public class SentenceParser extends Parser {
 
     private static final String WORD_PATTERN = "[\\w\\d]+";
 
@@ -28,7 +28,7 @@ public class SentenceParser extends Parser{
         List<String> parsedStructure = Arrays
                 .stream(structure.split("\\b"))
                 .collect(Collectors.toList());
-        for(String element : parsedStructure){
+        for (String element : parsedStructure) {
             sentenceList.add(getStructureByType(element, WORD_PATTERN));
         }
 

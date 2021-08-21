@@ -1,6 +1,6 @@
 package com.epam.jwd.exception;
 
-public class UnsupportedFileFormatException extends Exception{
+public class UnsupportedFileFormatException extends Exception {
 
     public UnsupportedFileFormatException() {
     }

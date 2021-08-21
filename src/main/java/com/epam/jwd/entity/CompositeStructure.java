@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class CompositeStructure implements SyntaxStructure{
+public class CompositeStructure implements SyntaxStructure {
 
     private List<SyntaxStructure> componentList;
 
@@ -20,15 +20,15 @@ public class CompositeStructure implements SyntaxStructure{
         this.componentList = componentList;
     }
 
-    public boolean removeComponent(SyntaxStructure structure){
+    public boolean removeComponent(SyntaxStructure structure) {
         return componentList.remove(structure);
     }
 
-    public SyntaxStructure removeComponent(int index){
+    public SyntaxStructure removeComponent(int index) {
         return componentList.remove(index);
     }
 
-    public boolean addComponent(SyntaxStructure structure){
+    public boolean addComponent(SyntaxStructure structure) {
         return componentList.add(structure);
     }
 

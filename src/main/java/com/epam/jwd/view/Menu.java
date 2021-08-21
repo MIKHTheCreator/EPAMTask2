@@ -6,7 +6,11 @@ public class Menu {
             "/You can choose your own file or take one of our test files\n" +
             "Write 1 or 2 to choose our files or write your file path./";
 
-    public static void printStartMessage(){
+    public static void printStartMessage() {
         System.out.println(WELCOME_MESSAGE);
+    }
+
+    public static void getStartMenu() {
+
     }
 }
