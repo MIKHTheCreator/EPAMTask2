@@ -36,6 +36,7 @@ public class Menu {
     private static final String DELIMITER = "/===========================================\\";
     private static final int DEFAULT_OPERATION = 0;
     private static final String WRONG_INPUT = "You should input number!!!";
+    private static final String WRONG_METHOD_ACCESS = "Choose existed method!";
 
     public static void printStartMessage() {
 
@@ -113,7 +114,7 @@ public class Menu {
             case 8 -> exit();
             default -> {
                 log.info("Default block works...");
-                System.out.println("Choose existed method!");
+                System.out.println(WRONG_METHOD_ACCESS);
             }
         }
 
