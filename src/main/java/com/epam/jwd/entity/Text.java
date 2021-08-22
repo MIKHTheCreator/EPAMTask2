@@ -38,6 +38,7 @@ public class Text extends CompositeStructure {
         return Objects.hash(super.hashCode(), textType);
     }
 
+
     @Override
     public String toString() {
         return new StringBuilder("\n")

@@ -1,6 +1,8 @@
 package com.epam.jwd.entity;
 
-public interface SyntaxStructure {
+import java.io.Serializable;
+
+public interface SyntaxStructure extends Serializable {
 
     String getComponent();
 }
