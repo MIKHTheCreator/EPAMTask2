@@ -1,14 +1,15 @@
 package com.epam.jwd.validation;
 
 import com.epam.jwd.exception.UnsupportedFileFormatException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class FilePathValidation {
 
-    private static final Logger log = Logger.getLogger(FilePathValidation.class);
+    private static final Logger log = LogManager.getLogger(FilePathValidation.class);
 
     private static final String FILE_FORMAT_EXCEPTION_MESSAGE = "Selected file format must be .txt";
     private static final String FILE_NOT_FOUND_EXCEPTION_MESSAGE = "File with such name isn't found";

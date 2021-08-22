@@ -1,7 +1,8 @@
 package com.epam.jwd.parser;
 
 import com.epam.jwd.entity.SyntaxStructure;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class SentenceParser extends Parser {
 
-    private static final Logger log = Logger.getLogger(SentenceParser.class);
+    private static final Logger log = LogManager.getLogger(SentenceParser.class);
 
     private static final String WORD_PATTERN = "[\\w\\d]+";
 

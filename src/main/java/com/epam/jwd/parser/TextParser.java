@@ -3,7 +3,8 @@ package com.epam.jwd.parser;
 import com.epam.jwd.entity.CodeBlock;
 import com.epam.jwd.entity.Sentence;
 import com.epam.jwd.entity.SyntaxStructure;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class TextParser extends Parser {
 
-    private static final Logger log = Logger.getLogger(TextParser.class);
+    private static final Logger log = LogManager.getLogger(TextParser.class);
     private static final String SENTENCE_PATTERN = "\\s*[A-Z]+[\\w\\d()\\-%+=;:\\\"'\\s,/>’“”<]*[.?!]+[\\s]*";
     private static final String TEXT_PATTERN = "[^.!?]*[.!?]";
     private final List<SyntaxStructure> componentList;

@@ -3,13 +3,14 @@ package com.epam.jwd.parser;
 import com.epam.jwd.entity.PunctuationMark;
 import com.epam.jwd.entity.SyntaxStructure;
 import com.epam.jwd.entity.Word;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public abstract class Parser {
 
-    private static final Logger log = Logger.getLogger(Parser.class);
+    private static final Logger log = LogManager.getLogger(Parser.class);
 
     private Parser nextParser;
 

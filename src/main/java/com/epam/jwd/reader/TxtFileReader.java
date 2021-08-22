@@ -2,7 +2,8 @@ package com.epam.jwd.reader;
 
 import com.epam.jwd.exception.UnsupportedFileFormatException;
 import com.epam.jwd.view.Menu;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -15,7 +16,7 @@ import static com.epam.jwd.validation.FilePathValidation.isAvailableFilePath;
 
 public class TxtFileReader {
 
-    private static final Logger log = Logger.getLogger(TxtFileReader.class);
+    private static final Logger log = LogManager.getLogger(TxtFileReader.class);
 
     private static final String EXIT_COMMAND = "exit";
     private static final String FIRST_TEST_FILE = "1";
