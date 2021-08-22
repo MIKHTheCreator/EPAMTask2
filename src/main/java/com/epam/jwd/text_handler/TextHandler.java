@@ -7,14 +7,11 @@ import com.epam.jwd.entity.Word;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TextHandler {
@@ -22,7 +19,8 @@ public class TextHandler {
     private static final Logger log = LogManager.getLogger(TextHandler.class);
 
     private static final String ILLEGAL_WORD_LENGTH_MESSAGE = "Word length must be greater then zero!";
-    private static final String ENTER_WORD_LENGTH_MESSAGE = "Enter positive word length:";
+    private static final String ENTER_WORD_LENGTH = "Enter word length(if input doesn't match a number will be used default length=4):";
+    private static final int DEFAULT_WORD_LENGTH = 4;
 
     public static void printText(Text text) {
         log.info("Printing text...");
@@ -110,9 +108,12 @@ public class TextHandler {
         List<SyntaxStructure> words = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println(ENTER_WORD_LENGTH_MESSAGE);
+        System.out.println(ENTER_WORD_LENGTH);
 
-        int wordLength = scanner.nextInt();
+        int wordLength = scanner.hasNextInt()
+                ? scanner.nextInt()
+                : DEFAULT_WORD_LENGTH;
+
         if (wordLength <= 0) {
             System.out.println(ILLEGAL_WORD_LENGTH_MESSAGE);
         }

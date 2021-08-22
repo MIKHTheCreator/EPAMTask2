@@ -1,12 +1,13 @@
 package com.epam.jwd.view;
 
-import com.epam.jwd.entity.SyntaxStructure;
 import com.epam.jwd.entity.Text;
 import com.epam.jwd.text_handler.TextHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
+
+import static com.epam.jwd.validation.NumberValidation.isNumberInput;
 
 public class Menu {
 
@@ -25,6 +26,8 @@ public class Menu {
             ||5-*print all words of question sentences with given length*
             ||6-*exit*""";
     private static final String DELIMITER = "/===========================================\\";
+    private static final int DEFAULT_OPERATION = 0;
+    private static final String WRONG_INPUT = "You should input number!!!";
 
     public static void printStartMessage() {
 
@@ -51,12 +54,18 @@ public class Menu {
         log.info("Waiting for user message...");
 
         while(scan.hasNext()){
-            chooseOption(scan.nextInt(), text);
+
+            chooseOption(isNumberInput(scan, DEFAULT_OPERATION), text);
         }
     }
 
     private static void chooseOption(int option, Text text){
         switch (option) {
+            case 0 -> {
+                log.info("Default function has been chosen");
+                System.out.println(WRONG_INPUT);
+                getStartMenu();
+            }
             case 1 -> {
                 log.info("printText function has been chosen");
                 TextHandler.printText(text);
