@@ -36,7 +36,6 @@ public class TextHandler {
     }
 
     private static List<SyntaxStructure> getSentenceWords(Sentence sentence) {
-        log.info("Getting Sentence wordList...");
         return sentence.getComponentList()
                 .stream()
                 .filter(structure -> structure instanceof Word)
