@@ -165,6 +165,7 @@ public class TextHandler {
                         .set(structures.size() - 2, word);
             }
         }
+        log.info("Words have been swapped");
     }
 
     private static int findFirstWordInSentence(Sentence sentence) {
