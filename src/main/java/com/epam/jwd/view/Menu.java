@@ -1,5 +1,6 @@
 package com.epam.jwd.view;
 
+import com.epam.jwd.entity.SyntaxStructure;
 import com.epam.jwd.entity.Text;
 import com.epam.jwd.text_handler.TextHandler;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +22,8 @@ public class Menu {
             ||2-*find number of sentences with equal words*
             ||3-*get sentences by word increasing*
             ||4-*find exclusive word in first sentence*
-            ||5-*exit*""";
+            ||5-*print all words of question sentences with given length*
+            ||6-*exit*""";
     private static final String DELIMITER = "/===========================================\\";
 
     public static void printStartMessage() {
@@ -71,7 +73,12 @@ public class Menu {
                     System.out.println("Exclusive word: " + TextHandler.findExclusiveWord(text));
                     getStartMenu();
                 }
-                case 5 -> exit();
+                case 5 -> {
+                    log.info("getWordsByLength function has been chosen");
+                    System.out.println("Words of given length: " + TextHandler.getWordsByLength(text));
+                    getStartMenu();
+                }
+                case 6 -> exit();
                 default -> {
                     log.info("Default block works...");
                     System.out.println("Choose existed method!");

@@ -7,14 +7,22 @@ import com.epam.jwd.entity.Word;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TextHandler {
 
     private static final Logger log = LogManager.getLogger(TextHandler.class);
+
+    private static final String ILLEGAL_WORD_LENGTH_MESSAGE = "Word length must be greater then zero!";
+    private static final String ENTER_WORD_LENGTH_MESSAGE = "Enter positive word length:";
 
     public static void printText(Text text) {
         log.info("Printing text...");
@@ -96,5 +104,37 @@ public class TextHandler {
 
     private static boolean hasComponentInSyntaxStructure(String structure, String component) {
         return structure.contains(component);
+    }
+
+    public static List<SyntaxStructure> getWordsByLength(Text text) {
+        List<SyntaxStructure> words = new ArrayList<>();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(ENTER_WORD_LENGTH_MESSAGE);
+
+        int wordLength = scanner.nextInt();
+        if (wordLength <= 0) {
+            System.out.println(ILLEGAL_WORD_LENGTH_MESSAGE);
+        }
+
+        for (SyntaxStructure sentence : getQuestionSentences(text)){
+            words.addAll(getSentenceWords((Sentence) sentence)
+                    .stream()
+                    .filter(word -> word.getComponent()
+                            .toLowerCase(Locale.ROOT)
+                            .length() == wordLength)
+                    .collect(Collectors.toList()));
+        }
+
+        return words.stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    private static List<SyntaxStructure> getQuestionSentences(Text text){
+        return getSentences(text)
+                .stream()
+                .filter(sentence -> sentence.getComponent().trim().endsWith("?"))
+                .collect(Collectors.toList());
     }
 }
