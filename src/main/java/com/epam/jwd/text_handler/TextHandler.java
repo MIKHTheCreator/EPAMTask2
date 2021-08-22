@@ -7,12 +7,19 @@ import com.epam.jwd.entity.Word;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import static com.epam.jwd.view.Menu.exit;
 
 public class TextHandler {
 
@@ -21,6 +28,7 @@ public class TextHandler {
     private static final String ILLEGAL_WORD_LENGTH_MESSAGE = "Word length must be greater then zero!";
     private static final String ENTER_WORD_LENGTH = "Enter word length(if input doesn't match a number will be used default length=4):";
     private static final int DEFAULT_WORD_LENGTH = 4;
+    private static final String IMPOSSIBLE_TO_READ_TEXT = "You can't rollback the text";
 
     public static void printText(Text text) {
         log.info("Printing text...");
@@ -118,7 +126,7 @@ public class TextHandler {
             System.out.println(ILLEGAL_WORD_LENGTH_MESSAGE);
         }
 
-        for (SyntaxStructure sentence : getQuestionSentences(text)){
+        for (SyntaxStructure sentence : getQuestionSentences(text)) {
             words.addAll(getSentenceWords((Sentence) sentence)
                     .stream()
                     .filter(word -> word.getComponent()
@@ -132,10 +140,73 @@ public class TextHandler {
                 .collect(Collectors.toList());
     }
 
-    private static List<SyntaxStructure> getQuestionSentences(Text text){
+    private static List<SyntaxStructure> getQuestionSentences(Text text) {
         return getSentences(text)
                 .stream()
-                .filter(sentence -> sentence.getComponent().trim().endsWith("?"))
+                .filter(sentence -> sentence
+                        .getComponent()
+                        .trim()
+                        .endsWith("?"))
                 .collect(Collectors.toList());
+    }
+
+    public static void swapFirstAndLastWords(Text text) {
+        for (SyntaxStructure structure : text.getComponentList()) {
+            if (isSentence(structure)) {
+                List<SyntaxStructure> structures = ((Sentence) structure).getComponentList();
+                int firstWordPosition = findFirstWordInSentence((Sentence) structure);
+
+                SyntaxStructure word = structures.get(firstWordPosition);
+                ((Sentence) structure)
+                        .getComponentList()
+                        .set(firstWordPosition, structures.get(structures.size() - 2));
+                ((Sentence) structure)
+                        .getComponentList()
+                        .set(structures.size() - 2, word);
+            }
+        }
+    }
+
+    private static int findFirstWordInSentence(Sentence sentence) {
+        int index = 0;
+
+        for(SyntaxStructure structure : sentence.getComponentList()) {
+            if (isWord(structure)) {
+                return index;
+            }
+
+            index++;
+        }
+
+        return index;
+    }
+
+    private static boolean isWord(SyntaxStructure structure) {
+        return structure instanceof Word;
+    }
+
+    public static Text rollback(Text text) {
+
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("TextState.bat"))) {
+
+            text = (Text) inputStream.readObject();
+        } catch (IOException ex) {
+            log.error("IOException caught: " + ex);
+            System.out.println(IMPOSSIBLE_TO_READ_TEXT);
+        } catch (ClassNotFoundException ex) {
+            log.error("ClassNotFoundException caught: " + ex);
+            exit();
+        }
+
+        log.info("Rollback successful");
+        return text;
+    }
+
+    public static void saveTextState(Text text) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("TextState.bat"))) {
+            outputStream.writeObject(text);
+        } catch (IOException ex) {
+            log.error("IOException caught: " + ex);
+        }
     }
 }

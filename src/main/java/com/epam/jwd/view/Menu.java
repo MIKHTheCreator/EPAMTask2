@@ -1,12 +1,18 @@
 package com.epam.jwd.view;
 
 import com.epam.jwd.entity.Text;
-import com.epam.jwd.text_handler.TextHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+import static com.epam.jwd.text_handler.TextHandler.findExclusiveWord;
+import static com.epam.jwd.text_handler.TextHandler.findNumOfSentencesWithEqualsWords;
+import static com.epam.jwd.text_handler.TextHandler.getWordsByLength;
+import static com.epam.jwd.text_handler.TextHandler.printSentencesByWordIncreasing;
+import static com.epam.jwd.text_handler.TextHandler.printText;
+import static com.epam.jwd.text_handler.TextHandler.rollback;
+import static com.epam.jwd.text_handler.TextHandler.swapFirstAndLastWords;
 import static com.epam.jwd.validation.NumberValidation.isNumberInput;
 
 public class Menu {
@@ -24,7 +30,9 @@ public class Menu {
             ||3-*get sentences by word increasing*
             ||4-*find exclusive word in first sentence*
             ||5-*print all words of question sentences with given length*
-            ||6-*exit*""";
+            ||6-*swap first and last words in every sentence*
+            ||7-*rollback*
+            ||8-*exit*""";
     private static final String DELIMITER = "/===========================================\\";
     private static final int DEFAULT_OPERATION = 0;
     private static final String WRONG_INPUT = "You should input number!!!";
@@ -53,13 +61,13 @@ public class Menu {
         Scanner scan = new Scanner(System.in);
         log.info("Waiting for user message...");
 
-        while(scan.hasNext()){
+        while (scan.hasNext()) {
 
-            chooseOption(isNumberInput(scan, DEFAULT_OPERATION), text);
+           text = chooseOption(isNumberInput(scan, DEFAULT_OPERATION), text);
         }
     }
 
-    private static void chooseOption(int option, Text text){
+    private static Text chooseOption(int option, Text text) {
         switch (option) {
             case 0 -> {
                 log.info("Default function has been chosen");
@@ -68,35 +76,47 @@ public class Menu {
             }
             case 1 -> {
                 log.info("printText function has been chosen");
-                TextHandler.printText(text);
+                printText(text);
                 getStartMenu();
             }
             case 2 -> {
                 log.info("getNumOfSentencesWithEqualWords function has been chosen");
                 System.out.println("Number of sentences with equal words: "
-                        + TextHandler.findNumOfSentencesWithEqualsWords(text));
+                        + findNumOfSentencesWithEqualsWords(text));
                 getStartMenu();
             }
             case 3 -> {
                 log.info("printSentencesByWordIncreasing function has been chosen");
-                TextHandler.printSentencesByWordIncreasing(text);
+                printSentencesByWordIncreasing(text);
                 getStartMenu();
             }
             case 4 -> {
                 log.info("findExclusiveWord function has been chosen");
-                System.out.println("Exclusive word: " + TextHandler.findExclusiveWord(text));
+                System.out.println("Exclusive word: " + findExclusiveWord(text));
                 getStartMenu();
             }
             case 5 -> {
                 log.info("getWordsByLength function has been chosen");
-                System.out.println("Words of given length: " + TextHandler.getWordsByLength(text));
+                System.out.println("Words of given length: " + getWordsByLength(text));
                 getStartMenu();
             }
-            case 6 -> exit();
+            case 6 -> {
+                log.info("swapFirstAndLastWords function has been chosen");
+                swapFirstAndLastWords(text);
+                getStartMenu();
+            }
+            case 7 -> {
+                log.info("rollback function has been chosen");
+                text = rollback(text);
+                getStartMenu();
+            }
+            case 8 -> exit();
             default -> {
                 log.info("Default block works...");
                 System.out.println("Choose existed method!");
             }
         }
+
+        return text;
     }
 }
