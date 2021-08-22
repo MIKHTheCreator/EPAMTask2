@@ -64,11 +64,11 @@ public class TxtFileReader {
                     break;
                 }
             } catch (UnsupportedFileFormatException ex) {
-                log.error("UnsupportedFileFormatException has been caught: " + ex.getMessage());
+                log.error("UnsupportedFileFormatException has been caught: " + ex);
                 System.out.println(ex.getMessage());
                 System.out.println(UNSUPPORTED_FILE_FORMAT_MESSAGE);
             } catch (FileNotFoundException ex) {
-                log.error("FileNotFound has been caught: " + ex.getMessage());
+                log.error("FileNotFound has been caught: " + ex);
                 System.out.println(ex.getMessage());
                 System.out.println(FILE_NOT_FOUND_MESSAGE);
             }
