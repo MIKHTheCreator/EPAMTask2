@@ -30,7 +30,6 @@ public class SentenceParser extends Parser {
         List<String> parsedStructure = Arrays
                 .stream(structure.split("\\b"))
                 .collect(Collectors.toList());
-        log.info("Sentence has bean splited");
         for (String element : parsedStructure) {
             sentenceList.add(getStructureByType(element, WORD_PATTERN));
         }

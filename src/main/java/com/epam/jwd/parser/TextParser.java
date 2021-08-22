@@ -37,12 +37,10 @@ public class TextParser extends Parser {
                 Parser nextParser = this.setNextParser(new SentenceParser());
                 Sentence sentence = new Sentence(nextParser.parse(parsedStructure));
                 componentList.add(sentence);
-                log.info("Structure has been parsed as sentence");
             } else {
                 Parser nextParser = this.setNextParser(new CodeBlockParser());
                 CodeBlock codeBlock = new CodeBlock(nextParser.parse(parsedStructure));
                 componentList.add(codeBlock);
-                log.info("Structure has been parsed as codeBlock");
             }
         }
 

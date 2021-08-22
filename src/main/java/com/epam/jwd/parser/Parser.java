@@ -28,11 +28,9 @@ public abstract class Parser {
 
     protected SyntaxStructure getStructureByType(String parsedStructure, String pattern) {
         if (parsedStructure.matches(pattern)) {
-            log.info("Getting Word object" );
             return new Word(parsedStructure);
         }
 
-        log.info("Getting Punctuation Mark Object");
         return new PunctuationMark(parsedStructure);
     }
 

@@ -45,13 +45,11 @@ public class TextHandler {
 
     private static boolean hasEqualWords(List<SyntaxStructure> sentenceWords) {
 
-        log.info("hasEqualWords method works...");
         return new HashSet<>(sentenceWords).size() < sentenceWords.size();
     }
 
     private static boolean isSentence(SyntaxStructure structure) {
 
-        log.info("isSentence method works...");
         return structure instanceof Sentence;
     }
 
@@ -71,7 +69,6 @@ public class TextHandler {
 
         for (SyntaxStructure sentence : text.getComponentList()) {
             if (isSentence(sentence)) {
-                log.info("Putting sentence to sentences list.");
                 sentences.add(sentence);
             }
         }
@@ -99,7 +96,6 @@ public class TextHandler {
     }
 
     private static boolean hasComponentInSyntaxStructure(String structure, String component) {
-        log.info("hasComponentInSyntaxStructure method works...");
         return structure.contains(component);
     }
 }

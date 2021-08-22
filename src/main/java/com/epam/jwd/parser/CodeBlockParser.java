@@ -31,7 +31,6 @@ public class CodeBlockParser extends Parser {
         List<String> parsedStructure = Arrays
                 .stream(structure.split("\\b"))
                 .collect(Collectors.toList());
-        log.info("CodeBlock has bean splited");
         for (String element : parsedStructure) {
             codeBlockList.add(getStructureByType(element, WORD_PATTERN));
         }
