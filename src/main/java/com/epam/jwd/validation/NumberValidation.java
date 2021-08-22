@@ -7,9 +7,9 @@ public class NumberValidation {
     public static int isNumberInput(Scanner scanner, int defaultNumber) {
         int inputNumber;
 
-        if(scanner.hasNextInt()){
+        if (scanner.hasNextInt()) {
             inputNumber = scanner.nextInt();
-        } else{
+        } else {
             inputNumber = defaultNumber;
             scanner.next();
         }
