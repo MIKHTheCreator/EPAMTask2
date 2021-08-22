@@ -51,38 +51,42 @@ public class Menu {
         log.info("Waiting for user message...");
 
         while(scan.hasNext()){
-            switch (scan.nextInt()) {
-                case 1 -> {
-                    log.info("printText function has been chosen");
-                    TextHandler.printText(text);
-                    getStartMenu();
-                }
-                case 2 -> {
-                    log.info("getNumOfSentencesWithEqualWords function has been chosen");
-                    System.out.println("Number of sentences with equal words: "
-                            + TextHandler.findNumOfSentencesWithEqualsWords(text));
-                    getStartMenu();
-                }
-                case 3 -> {
-                    log.info("printSentencesByWordIncreasing function has been chosen");
-                    TextHandler.printSentencesByWordIncreasing(text);
-                    getStartMenu();
-                }
-                case 4 -> {
-                    log.info("findExclusiveWord function has been chosen");
-                    System.out.println("Exclusive word: " + TextHandler.findExclusiveWord(text));
-                    getStartMenu();
-                }
-                case 5 -> {
-                    log.info("getWordsByLength function has been chosen");
-                    System.out.println("Words of given length: " + TextHandler.getWordsByLength(text));
-                    getStartMenu();
-                }
-                case 6 -> exit();
-                default -> {
-                    log.info("Default block works...");
-                    System.out.println("Choose existed method!");
-                }
+            chooseOption(scan.nextInt(), text);
+        }
+    }
+
+    private static void chooseOption(int option, Text text){
+        switch (option) {
+            case 1 -> {
+                log.info("printText function has been chosen");
+                TextHandler.printText(text);
+                getStartMenu();
+            }
+            case 2 -> {
+                log.info("getNumOfSentencesWithEqualWords function has been chosen");
+                System.out.println("Number of sentences with equal words: "
+                        + TextHandler.findNumOfSentencesWithEqualsWords(text));
+                getStartMenu();
+            }
+            case 3 -> {
+                log.info("printSentencesByWordIncreasing function has been chosen");
+                TextHandler.printSentencesByWordIncreasing(text);
+                getStartMenu();
+            }
+            case 4 -> {
+                log.info("findExclusiveWord function has been chosen");
+                System.out.println("Exclusive word: " + TextHandler.findExclusiveWord(text));
+                getStartMenu();
+            }
+            case 5 -> {
+                log.info("getWordsByLength function has been chosen");
+                System.out.println("Words of given length: " + TextHandler.getWordsByLength(text));
+                getStartMenu();
+            }
+            case 6 -> exit();
+            default -> {
+                log.info("Default block works...");
+                System.out.println("Choose existed method!");
             }
         }
     }
