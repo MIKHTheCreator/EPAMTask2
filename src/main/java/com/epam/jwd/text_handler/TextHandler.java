@@ -229,7 +229,6 @@ public class TextHandler {
                 .distinct()
                 .collect(Collectors.toList());
 
-
         System.out.println(sortedWords.get(0));
 
         for(int i = 1; i < sortedWords.size(); i++) {
