@@ -54,6 +54,7 @@ public class Menu {
         functionContext.register(7, new WordsInAlphabetSortImpl());
         functionContext.register(8, new RollbackFunctionImpl());
         functionContext.register(9, new ExitFunctionImpl());
+
     }
 
     public static void printStartMessage() {
@@ -82,7 +83,8 @@ public class Menu {
 
         while (scan.hasNext()) {
 
-            text = functionContext.call(getNumberInput(scan, DEFAULT_OPERATION), text);
+
+           text = functionContext.call(getNumberInput(scan, DEFAULT_OPERATION), text);
         }
     }
 
