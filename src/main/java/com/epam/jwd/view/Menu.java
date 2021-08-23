@@ -37,6 +37,9 @@ public class Menu {
     private static final int DEFAULT_OPERATION = 0;
     private static final String WRONG_INPUT = "You should input number!!!";
     private static final String WRONG_METHOD_ACCESS = "Choose existed method!";
+    private static final String SENTENCE_INCREASING = "Number of sentences with equal words: ";
+    private static final String EXCLUSIVE_WORD = "Exclusive word: ";
+    private static final String GIVEN_LENGTH_WORDS = "Words of given length: ";
 
     public static void printStartMessage() {
 
@@ -82,7 +85,7 @@ public class Menu {
             }
             case 2 -> {
                 log.info("getNumOfSentencesWithEqualWords function has been chosen");
-                System.out.println("Number of sentences with equal words: "
+                System.out.println(SENTENCE_INCREASING
                         + findNumOfSentencesWithEqualsWords(text));
                 getStartMenu();
             }
@@ -93,12 +96,12 @@ public class Menu {
             }
             case 4 -> {
                 log.info("findExclusiveWord function has been chosen");
-                System.out.println("Exclusive word: " + findExclusiveWord(text));
+                System.out.println(EXCLUSIVE_WORD + findExclusiveWord(text));
                 getStartMenu();
             }
             case 5 -> {
                 log.info("getWordsByLength function has been chosen");
-                System.out.println("Words of given length: " + getWordsByLength(text));
+                System.out.println(GIVEN_LENGTH_WORDS + getWordsByLength(text));
                 getStartMenu();
             }
             case 6 -> {
