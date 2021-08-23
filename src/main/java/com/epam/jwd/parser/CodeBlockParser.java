@@ -24,7 +24,7 @@ public class CodeBlockParser extends Parser {
         codeBlockList = new ArrayList<>();
     }
 
-    public List<SyntaxStructure> getSentenceList() {
+    public List<SyntaxStructure> getCodeBlockList() {
         return codeBlockList;
     }
 
