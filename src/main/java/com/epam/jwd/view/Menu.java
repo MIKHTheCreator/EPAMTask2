@@ -1,19 +1,22 @@
 package com.epam.jwd.view;
 
 import com.epam.jwd.entity.Text;
+import com.epam.jwd.switcher.FunctionContext;
+import com.epam.jwd.switcher.impl.EqualWordsFunctionImpl;
+import com.epam.jwd.switcher.impl.ExclusiveWordFunctionImpl;
+import com.epam.jwd.switcher.impl.ExitFunctionImpl;
+import com.epam.jwd.switcher.impl.PrintTextFunctionImpl;
+import com.epam.jwd.switcher.impl.RollbackFunctionImpl;
+import com.epam.jwd.switcher.impl.SwapFunctionImpl;
+import com.epam.jwd.switcher.impl.WordIncreasingFunctionImpl;
+import com.epam.jwd.switcher.impl.WordsByLengthFunctionImpl;
+import com.epam.jwd.switcher.impl.WrongInputFunctionImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
-import static com.epam.jwd.text_handler.TextHandler.findExclusiveWord;
-import static com.epam.jwd.text_handler.TextHandler.findNumOfSentencesWithEqualsWords;
-import static com.epam.jwd.text_handler.TextHandler.getWordsByLength;
-import static com.epam.jwd.text_handler.TextHandler.printSentencesByWordIncreasing;
-import static com.epam.jwd.text_handler.TextHandler.printText;
-import static com.epam.jwd.text_handler.TextHandler.rollback;
-import static com.epam.jwd.text_handler.TextHandler.swapFirstAndLastWords;
-import static com.epam.jwd.validation.NumberValidation.isNumberInput;
+import static com.epam.jwd.validation.NumberValidation.getNumberInput;
 
 public class Menu {
 
@@ -35,11 +38,20 @@ public class Menu {
             ||8-*exit*""";
     private static final String DELIMITER = "/===========================================\\";
     private static final int DEFAULT_OPERATION = 0;
-    private static final String WRONG_INPUT = "You should input number!!!";
-    private static final String WRONG_METHOD_ACCESS = "Choose existed method!";
-    private static final String SENTENCE_INCREASING = "Number of sentences with equal words: ";
-    private static final String EXCLUSIVE_WORD = "Exclusive word: ";
-    private static final String GIVEN_LENGTH_WORDS = "Words of given length: ";
+
+    private static FunctionContext context = new FunctionContext();
+
+    static {
+        context.register(0, new WrongInputFunctionImpl());
+        context.register(1, new PrintTextFunctionImpl());
+        context.register(2, new EqualWordsFunctionImpl());
+        context.register(3, new WordIncreasingFunctionImpl());
+        context.register(4, new ExclusiveWordFunctionImpl());
+        context.register(5, new WordsByLengthFunctionImpl());
+        context.register(6, new SwapFunctionImpl());
+        context.register(7, new RollbackFunctionImpl());
+        context.register(8, new ExitFunctionImpl());
+    }
 
     public static void printStartMessage() {
 
@@ -67,60 +79,8 @@ public class Menu {
 
         while (scan.hasNext()) {
 
-           text = chooseOption(isNumberInput(scan, DEFAULT_OPERATION), text);
+           text = context.call(getNumberInput(scan, DEFAULT_OPERATION), text);
         }
     }
 
-    private static Text chooseOption(int option, Text text) {
-        switch (option) {
-            case 0 -> {
-                log.info("Default function has been chosen");
-                System.out.println(WRONG_INPUT);
-                getStartMenu();
-            }
-            case 1 -> {
-                log.info("printText function has been chosen");
-                printText(text);
-                getStartMenu();
-            }
-            case 2 -> {
-                log.info("getNumOfSentencesWithEqualWords function has been chosen");
-                System.out.println(SENTENCE_INCREASING
-                        + findNumOfSentencesWithEqualsWords(text));
-                getStartMenu();
-            }
-            case 3 -> {
-                log.info("printSentencesByWordIncreasing function has been chosen");
-                printSentencesByWordIncreasing(text);
-                getStartMenu();
-            }
-            case 4 -> {
-                log.info("findExclusiveWord function has been chosen");
-                System.out.println(EXCLUSIVE_WORD + findExclusiveWord(text));
-                getStartMenu();
-            }
-            case 5 -> {
-                log.info("getWordsByLength function has been chosen");
-                System.out.println(GIVEN_LENGTH_WORDS + getWordsByLength(text));
-                getStartMenu();
-            }
-            case 6 -> {
-                log.info("swapFirstAndLastWords function has been chosen");
-                swapFirstAndLastWords(text);
-                getStartMenu();
-            }
-            case 7 -> {
-                log.info("rollback function has been chosen");
-                text = rollback(text);
-                getStartMenu();
-            }
-            case 8 -> exit();
-            default -> {
-                log.info("Default block works...");
-                System.out.println(WRONG_METHOD_ACCESS);
-            }
-        }
-
-        return text;
-    }
 }
