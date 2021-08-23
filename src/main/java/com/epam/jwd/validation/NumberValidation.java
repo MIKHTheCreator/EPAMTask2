@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class NumberValidation {
 
-    public static int isNumberInput(Scanner scanner, int defaultNumber) {
+    public static int getNumberInput(Scanner scanner, int defaultNumber) {
         int inputNumber;
 
         if (scanner.hasNextInt()) {
