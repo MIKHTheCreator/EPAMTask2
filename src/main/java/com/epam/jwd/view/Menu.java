@@ -41,19 +41,19 @@ public class Menu {
     private static final String DELIMITER = "/===========================================\\";
     private static final int DEFAULT_OPERATION = 0;
 
-    private static FunctionContext context = new FunctionContext();
+    private static FunctionContext functionContext = new FunctionContext();
 
     static {
-        context.register(0, new WrongInputFunctionImpl());
-        context.register(1, new PrintTextFunctionImpl());
-        context.register(2, new EqualWordsFunctionImpl());
-        context.register(3, new WordIncreasingFunctionImpl());
-        context.register(4, new ExclusiveWordFunctionImpl());
-        context.register(5, new WordsByLengthFunctionImpl());
-        context.register(6, new SwapFunctionImpl());
-        context.register(7, new WordsInAlphabetSortImpl());
-        context.register(8, new RollbackFunctionImpl());
-        context.register(9, new ExitFunctionImpl());
+        functionContext.register(0, new WrongInputFunctionImpl());
+        functionContext.register(1, new PrintTextFunctionImpl());
+        functionContext.register(2, new EqualWordsFunctionImpl());
+        functionContext.register(3, new WordIncreasingFunctionImpl());
+        functionContext.register(4, new ExclusiveWordFunctionImpl());
+        functionContext.register(5, new WordsByLengthFunctionImpl());
+        functionContext.register(6, new SwapFunctionImpl());
+        functionContext.register(7, new WordsInAlphabetSortImpl());
+        functionContext.register(8, new RollbackFunctionImpl());
+        functionContext.register(9, new ExitFunctionImpl());
     }
 
     public static void printStartMessage() {
@@ -82,7 +82,7 @@ public class Menu {
 
         while (scan.hasNext()) {
 
-            text = context.call(getNumberInput(scan, DEFAULT_OPERATION), text);
+            text = functionContext.call(getNumberInput(scan, DEFAULT_OPERATION), text);
         }
     }
 
