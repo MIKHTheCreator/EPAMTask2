@@ -75,7 +75,7 @@ public class Menu {
         getStartMenu();
 
         Scanner scan = new Scanner(System.in);
-        log.info("Waiting for user message...");
+        log.info("Waiting for user's input...");
 
         while (scan.hasNext()) {
 
