@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -171,7 +172,7 @@ public class TextHandler {
     private static int findFirstWordInSentence(Sentence sentence) {
         int index = 0;
 
-        for(SyntaxStructure structure : sentence.getComponentList()) {
+        for (SyntaxStructure structure : sentence.getComponentList()) {
             if (isWord(structure)) {
                 return index;
             }
@@ -209,5 +210,37 @@ public class TextHandler {
         } catch (IOException ex) {
             log.error("IOException caught: " + ex);
         }
+    }
+
+    public static void printSentenceWordsInAlphabeticSort(Text text) {
+        List<String> sortedWords = new ArrayList<>();
+
+        for(SyntaxStructure sentence : getSentences(text)) {
+            sortedWords.addAll(getSentenceWords((Sentence) sentence)
+                    .stream()
+                    .map(word -> word.getComponent()
+                            .toLowerCase())
+                    .collect(Collectors.toList()));
+        }
+
+        sortedWords = sortedWords
+                .stream()
+                .sorted()
+                .distinct()
+                .collect(Collectors.toList());
+
+
+        System.out.println(sortedWords.get(0));
+
+        for(int i = 1; i < sortedWords.size(); i++) {
+            String word = sortedWords.get(i);
+            String previousWord = sortedWords.get(i-1);
+            if(word.charAt(0) !=  previousWord.charAt(0)) {
+                System.out.print("\n\t" + word + ";");
+            } else {
+                System.out.print("\s" + word + ";");
+            }
+        }
+        System.out.println("\n");
     }
 }

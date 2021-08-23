@@ -10,6 +10,7 @@ import com.epam.jwd.switcher.impl.RollbackFunctionImpl;
 import com.epam.jwd.switcher.impl.SwapFunctionImpl;
 import com.epam.jwd.switcher.impl.WordIncreasingFunctionImpl;
 import com.epam.jwd.switcher.impl.WordsByLengthFunctionImpl;
+import com.epam.jwd.switcher.impl.WordsInAlphabetSortImpl;
 import com.epam.jwd.switcher.impl.WrongInputFunctionImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,8 +35,9 @@ public class Menu {
             ||4-*find exclusive word in first sentence*
             ||5-*print all words of question sentences with given length*
             ||6-*swap first and last words in every sentence*
-            ||7-*rollback*
-            ||8-*exit*""";
+            ||7-*print words in alphabet sort*
+            ||8-*rollback*
+            ||9-*exit*""";
     private static final String DELIMITER = "/===========================================\\";
     private static final int DEFAULT_OPERATION = 0;
 
@@ -49,8 +51,9 @@ public class Menu {
         context.register(4, new ExclusiveWordFunctionImpl());
         context.register(5, new WordsByLengthFunctionImpl());
         context.register(6, new SwapFunctionImpl());
-        context.register(7, new RollbackFunctionImpl());
-        context.register(8, new ExitFunctionImpl());
+        context.register(7, new WordsInAlphabetSortImpl());
+        context.register(8, new RollbackFunctionImpl());
+        context.register(9, new ExitFunctionImpl());
     }
 
     public static void printStartMessage() {
