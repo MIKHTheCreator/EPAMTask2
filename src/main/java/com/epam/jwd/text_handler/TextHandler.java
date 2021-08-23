@@ -52,7 +52,7 @@ public class TextHandler {
     private static List<SyntaxStructure> getSentenceWords(Sentence sentence) {
         return sentence.getComponentList()
                 .stream()
-                .filter(structure -> structure instanceof Word)
+                .filter(TextHandler::isWord)
                 .collect(Collectors.toList());
     }
 
