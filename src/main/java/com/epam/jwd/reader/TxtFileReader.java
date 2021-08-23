@@ -1,7 +1,6 @@
 package com.epam.jwd.reader;
 
 import com.epam.jwd.exception.UnsupportedFileFormatException;
-import com.epam.jwd.view.Menu;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,21 +12,23 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import static com.epam.jwd.validation.FilePathValidation.isAvailableFilePath;
+import static com.epam.jwd.view.Menu.exit;
+import static com.epam.jwd.view.Menu.printStartMessage;
 
 public class TxtFileReader {
 
     private static final Logger log = LogManager.getLogger(TxtFileReader.class);
 
     private static final String EXIT_COMMAND = "exit";
-    private static final String FIRST_TEST_FILE = "1";
-    private static final String SECOND_TEST_FILE = "2";
+    private static final String FIRST_TEST_FILE = "Test.txt";
+    private static final String SECOND_TEST_FILE = "Test2.txt";
     private static final String START_MESSAGE = "Enter file path(.txt files only supported): ";
     private static final String UNSUPPORTED_FILE_FORMAT_MESSAGE = "Choose .txt file or enter exit to close the programme: ";
     private static final String FILE_NOT_FOUND_MESSAGE = "Write path again or enter exit to close the programme: ";
 
     public static String getFileText() {
 
-        Menu.printStartMessage();
+        printStartMessage();
         StringBuilder builder = new StringBuilder();
 
         try {
@@ -50,13 +51,13 @@ public class TxtFileReader {
             path = scan.nextLine();
             try {
                 if (path.trim().equalsIgnoreCase(EXIT_COMMAND)) {
-                    Menu.exit();
-                } else if (FIRST_TEST_FILE.equals(path)) {
-                    path = "Test.txt";
+                    exit();
+                } else if ("1".equals(path)) {
+                    path = FIRST_TEST_FILE;
                     log.info("Test.txt file has been chosen");
                     break;
-                } else if (SECOND_TEST_FILE.equals(path)) {
-                    path = "Test2.txt";
+                } else if ("2".equals(path)) {
+                    path = SECOND_TEST_FILE;
                     log.info("Test2.txt file has been chosen");
                     break;
                 } else if (isAvailableFilePath(path.trim())) {
