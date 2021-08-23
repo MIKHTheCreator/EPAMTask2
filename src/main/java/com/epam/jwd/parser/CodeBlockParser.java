@@ -16,6 +16,8 @@ public class CodeBlockParser extends Parser {
     private static final Logger log = LogManager.getLogger(SentenceParser.class);
 
     private static final String WORD_PATTERN = "[\\w\\d]+";
+    private static final String CODE_BLOCK_SEPARATOR = "\\b";
+
     private final List<SyntaxStructure> codeBlockList;
 
     {
@@ -29,7 +31,7 @@ public class CodeBlockParser extends Parser {
     @Override
     public List<SyntaxStructure> parse(String structure) {
         List<String> parsedStructure = Arrays
-                .stream(structure.split("\\b"))
+                .stream(structure.split(CODE_BLOCK_SEPARATOR))
                 .collect(Collectors.toList());
         for (String element : parsedStructure) {
             codeBlockList.add(getStructureByType(element, WORD_PATTERN));

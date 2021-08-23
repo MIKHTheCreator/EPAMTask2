@@ -14,6 +14,7 @@ public class SentenceParser extends Parser {
     private static final Logger log = LogManager.getLogger(SentenceParser.class);
 
     private static final String WORD_PATTERN = "[\\w\\d]+";
+    private static final String SENTENCE_SEPARATOR = "\\b";
 
     private final List<SyntaxStructure> sentenceList;
 
@@ -28,7 +29,7 @@ public class SentenceParser extends Parser {
     @Override
     public List<SyntaxStructure> parse(String structure) {
         List<String> parsedStructure = Arrays
-                .stream(structure.split("\\b"))
+                .stream(structure.split(SENTENCE_SEPARATOR))
                 .collect(Collectors.toList());
         for (String element : parsedStructure) {
             sentenceList.add(getStructureByType(element, WORD_PATTERN));
