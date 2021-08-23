@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -215,7 +214,7 @@ public class TextHandler {
     public static void printSentenceWordsInAlphabeticSort(Text text) {
         List<String> sortedWords = new ArrayList<>();
 
-        for(SyntaxStructure sentence : getSentences(text)) {
+        for (SyntaxStructure sentence : getSentences(text)) {
             sortedWords.addAll(getSentenceWords((Sentence) sentence)
                     .stream()
                     .map(word -> word.getComponent()
@@ -231,10 +230,10 @@ public class TextHandler {
 
         System.out.println(sortedWords.get(0));
 
-        for(int i = 1; i < sortedWords.size(); i++) {
+        for (int i = 1; i < sortedWords.size(); i++) {
             String word = sortedWords.get(i);
-            String previousWord = sortedWords.get(i-1);
-            if(word.charAt(0) !=  previousWord.charAt(0)) {
+            String previousWord = sortedWords.get(i - 1);
+            if (word.charAt(0) != previousWord.charAt(0)) {
                 System.out.print("\n\t" + word + ";");
             } else {
                 System.out.print("\s" + word + ";");
