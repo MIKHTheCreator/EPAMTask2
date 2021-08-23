@@ -83,7 +83,6 @@ public class Menu {
 
         while (scan.hasNext()) {
 
-
            text = functionContext.call(getNumberInput(scan, DEFAULT_OPERATION), text);
         }
     }
