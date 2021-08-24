@@ -12,9 +12,11 @@ public class SwapFunctionImpl implements FunctionExecutor {
 
     private static final Logger log = LogManager.getLogger(SwapFunctionImpl.class);
 
+    private static final String SWAP_FUNCTION_LOG_MESSAGE = "swapFirstAndLastWords function has been chosen";
+
     @Override
     public Text execute(Text text) {
-        log.info("swapFirstAndLastWords function has been chosen");
+        log.info(SWAP_FUNCTION_LOG_MESSAGE);
         swapFirstAndLastWords(text);
         getStartMenu();
         return text;

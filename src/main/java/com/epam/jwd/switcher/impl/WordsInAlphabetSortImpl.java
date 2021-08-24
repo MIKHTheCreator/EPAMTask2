@@ -12,9 +12,11 @@ public class WordsInAlphabetSortImpl implements FunctionExecutor {
 
     private static final Logger log = LogManager.getLogger(WordsInAlphabetSortImpl.class);
 
+    private static final String ALPHABETIC_SORT_LOG_MESSAGE = "printWordsInAlphabetSort function has been chosen";
+
     @Override
     public Text execute(Text text) {
-        log.info("printWordsInAlphabetSort function has been chosen");
+        log.info(ALPHABETIC_SORT_LOG_MESSAGE);
         printSentenceWordsInAlphabeticSort(text);
         getStartMenu();
         return text;

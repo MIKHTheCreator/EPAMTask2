@@ -12,9 +12,11 @@ public class WordIncreasingFunctionImpl implements FunctionExecutor {
 
     private static final Logger log = LogManager.getLogger(WordIncreasingFunctionImpl.class);
 
+    private static final String WORD_INCREASING_FUNCTION_LOG_MESSAGE = "printSentencesByWordIncreasing function has been chosen";
+
     @Override
     public Text execute(Text text) {
-        log.info("printSentencesByWordIncreasing function has been chosen");
+        log.info(WORD_INCREASING_FUNCTION_LOG_MESSAGE);
         printSentencesByWordIncreasing(text);
         getStartMenu();
         return text;

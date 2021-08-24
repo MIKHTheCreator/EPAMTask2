@@ -13,9 +13,11 @@ public class PrintTextFunctionImpl implements FunctionExecutor {
 
     private static final Logger log = LogManager.getLogger(PrintTextFunctionImpl.class);
 
+    private static final String PRINT_TEXT_FUNCTION_LOG_MESSAGE = "printText function has been chosen";
+
     @Override
     public Text execute(Text text) {
-        log.info("printText function has been chosen");
+        log.info(PRINT_TEXT_FUNCTION_LOG_MESSAGE);
         printText(text);
         getStartMenu();
         return text;

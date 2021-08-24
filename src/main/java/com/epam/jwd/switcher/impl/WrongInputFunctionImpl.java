@@ -12,10 +12,11 @@ public class WrongInputFunctionImpl implements FunctionExecutor {
     private static final Logger log = LogManager.getLogger(WrongInputFunctionImpl.class);
 
     private static final String WRONG_INPUT = "You should input number!!!";
+    private static final String DEFAULT_OUTPUT_LOG_MESSAGE = "Default function has been chosen";
 
     @Override
     public Text execute(Text text) {
-        log.info("Default function has been chosen");
+        log.info(DEFAULT_OUTPUT_LOG_MESSAGE);
         System.out.println(WRONG_INPUT);
         getStartMenu();
         return text;

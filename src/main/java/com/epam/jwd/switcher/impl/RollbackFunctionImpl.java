@@ -12,9 +12,11 @@ public class RollbackFunctionImpl implements FunctionExecutor {
 
     private static final Logger log = LogManager.getLogger(RollbackFunctionImpl.class);
 
+    private static final String ROLLBACK_FUNCTION_LOG_MESSAGE = "rollback function has been chosen";
+
     @Override
     public Text execute(Text text) {
-        log.info("rollback function has been chosen");
+        log.info(ROLLBACK_FUNCTION_LOG_MESSAGE);
         text = rollback(text);
         getStartMenu();
         return text;

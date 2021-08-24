@@ -13,10 +13,11 @@ public class EqualWordsFunctionImpl implements FunctionExecutor {
     private static final Logger log = LogManager.getLogger(EqualWordsFunctionImpl.class);
 
     private static final String SENTENCE_INCREASING = "Number of sentences with equal words: ";
+    private static final String EQUAL_WORDS_FUNCTION_LOG_MESSAGE = "getNumOfSentencesWithEqualWords function has been chosen";
 
     @Override
     public Text execute(Text text) {
-        log.info("getNumOfSentencesWithEqualWords function has been chosen");
+        log.info(EQUAL_WORDS_FUNCTION_LOG_MESSAGE);
         System.out.println(SENTENCE_INCREASING
                 + findNumOfSentencesWithEqualsWords(text));
         getStartMenu();

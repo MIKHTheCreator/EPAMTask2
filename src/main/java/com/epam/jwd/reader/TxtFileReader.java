@@ -25,6 +25,13 @@ public class TxtFileReader {
     private static final String START_MESSAGE = "Enter file path(.txt files only supported): ";
     private static final String UNSUPPORTED_FILE_FORMAT_MESSAGE = "Choose .txt file or enter exit to close the programme: ";
     private static final String FILE_NOT_FOUND_MESSAGE = "Write path again or enter exit to close the programme: ";
+    private static final String IOEXCEPTION_LOG_MESSAGE = "IOException has been caught:  ";
+    private static final String UNSUPPORTED_FILE_FORMAT_LOG_MESSAGE = "UnsupportedFileFormatException has been caught: ";
+    private static final String FILE_NOT_FOUND_LOG_MESSAGE = "FileNotFound has been caught: ";
+    private static final String FIRST_FILE_LOG_MESSAGE = "Test.txt file has been chosen";
+    private static final String SECOND_FILE_LOG_MESSAGE = "Test2.txt file has been chosen";
+    private static final String USER_FILE_LOG_MESSAGE = "User's file has been chosen: ";
+    private static final String READ_TEXT_FILE_LOG_MESSAGE = "TextFile has been read";
 
     public static String getFileText() {
 
@@ -34,7 +41,7 @@ public class TxtFileReader {
         try {
             readTextFromFile(getFilePath(), builder);
         } catch (IOException ex) {
-            log.error("IOException has been caught:" + ex.getMessage());
+            log.error(IOEXCEPTION_LOG_MESSAGE, ex);
             System.out.println(ex.getMessage());
         }
 
@@ -54,22 +61,22 @@ public class TxtFileReader {
                     exit();
                 } else if ("1".equals(path)) {
                     path = FIRST_TEST_FILE;
-                    log.info("Test.txt file has been chosen");
+                    log.info(FIRST_FILE_LOG_MESSAGE);
                     break;
                 } else if ("2".equals(path)) {
                     path = SECOND_TEST_FILE;
-                    log.info("Test2.txt file has been chosen");
+                    log.info(SECOND_FILE_LOG_MESSAGE);
                     break;
                 } else if (isAvailableFilePath(path.trim())) {
-                    log.info("User's file has been chosen: " + path);
+                    log.info(USER_FILE_LOG_MESSAGE + path);
                     break;
                 }
             } catch (UnsupportedFileFormatException ex) {
-                log.error("UnsupportedFileFormatException has been caught: ", ex);
+                log.error(UNSUPPORTED_FILE_FORMAT_LOG_MESSAGE, ex);
                 System.out.println(ex.getMessage());
                 System.out.println(UNSUPPORTED_FILE_FORMAT_MESSAGE);
             } catch (FileNotFoundException ex) {
-                log.error("FileNotFound has been caught: ",  ex);
+                log.error(FILE_NOT_FOUND_LOG_MESSAGE,  ex);
                 System.out.println(ex.getMessage());
                 System.out.println(FILE_NOT_FOUND_MESSAGE);
             }
@@ -88,6 +95,6 @@ public class TxtFileReader {
             }
         }
 
-        log.info("TextFile has been read");
+        log.info(READ_TEXT_FILE_LOG_MESSAGE);
     }
 }
