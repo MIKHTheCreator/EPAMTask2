@@ -25,13 +25,23 @@ public class TextHandler {
 
     private static final Logger log = LogManager.getLogger(TextHandler.class);
 
+    private static final String OBJECT_STATE_FILE = "TextState.bat";
+    private static final String WORDS_DELIMITER = ";";
     private static final String ILLEGAL_WORD_LENGTH_MESSAGE = "Word length must be greater then zero!";
     private static final String ENTER_WORD_LENGTH = "Enter word length(if input doesn't match a number will be used default length=4):";
-    private static final int DEFAULT_WORD_LENGTH = 4;
     private static final String IMPOSSIBLE_TO_READ_TEXT = "You can't rollback the text";
+    private static final String PRINT_TEXT_LOG_MESSAGE = "Printing text...";
+    private static final String SENTENCES_WITH_EQUAL_WORDS_LOG_MESSAGE = "Sentence with equal word has been found. Num of such sentences: ";
+    private static final String SENTENCES_BY_WORD_AMOUNT_LOG_MESSAGE = "Printing sentences by word amount increasing";
+    private static final String EXCLUSIVE_WORD_LOG_MESSAGE = "Exclusive word has been found: ";
+    private static final String WORD_SWAPPER_LOG_MESSAGE = "Words have been swapped";
+    private static final String ROLLBACK_LOG_MESSAGE = "Rollback successful";
+    private static final String IOEXCEPTION_LOG_MESSAGE = "IOException caught: ";
+    private static final String CLASS_NOT_FOUND_LOG_MESSAGE = "ClassNotFoundException caught: ";
+    private static final int DEFAULT_WORD_LENGTH = 4;
 
     public static void printText(Text text) {
-        log.info("Printing text...");
+        log.info(PRINT_TEXT_LOG_MESSAGE);
         System.out.println(text.getComponent());
     }
 
@@ -41,7 +51,7 @@ public class TextHandler {
             if (isSentence(sentence)) {
                 if (hasEqualWords(getSentenceWords((Sentence) sentence))) {
                     numOfSentences++;
-                    log.info("Sentence with equal word has been found. Num of such sentences: " + numOfSentences);
+                    log.info(SENTENCES_WITH_EQUAL_WORDS_LOG_MESSAGE + numOfSentences);
                 }
             }
         }
@@ -69,10 +79,9 @@ public class TextHandler {
     public static void printSentencesByWordIncreasing(Text text) {
         List<SyntaxStructure> sentences = getSentences(text);
 
-        log.info("Printing sentences by word amount increasing");
+        log.info(SENTENCES_BY_WORD_AMOUNT_LOG_MESSAGE);
         sentences.sort((s1, s2) -> getSentenceWords((Sentence) s1).size() - getSentenceWords((Sentence) s2).size());
-        sentences
-                .forEach(sentence -> System.out.println("Sentence: " + sentence.getComponent()
+        sentences.forEach(sentence -> System.out.println("Sentence: " + sentence.getComponent()
                         .trim()
                         .replaceAll("\n", " ")));
     }
@@ -92,7 +101,6 @@ public class TextHandler {
         String exclusiveWord = "There is no exclusive words in first sentence!";
         List<SyntaxStructure> firstSentenceWords = getSentenceWords((Sentence) getSentences(text).get(0));
 
-        log.info("Removing first sentence");
         text.removeComponent(0);
         String textAsString = text.getComponent();
         for (SyntaxStructure structure : firstSentenceWords) {
@@ -102,7 +110,7 @@ public class TextHandler {
                 continue;
             }
             exclusiveWord = word;
-            log.info("Exclusive word has been found: " + exclusiveWord);
+            log.info(EXCLUSIVE_WORD_LOG_MESSAGE + exclusiveWord);
         }
 
         return exclusiveWord;
@@ -153,19 +161,24 @@ public class TextHandler {
     public static void swapFirstAndLastWords(Text text) {
         for (SyntaxStructure structure : text.getComponentList()) {
             if (isSentence(structure)) {
-                List<SyntaxStructure> structures = ((Sentence) structure).getComponentList();
+                Sentence sentence = (Sentence) structure;
+                List<SyntaxStructure> structures = sentence.getComponentList();
                 int firstWordPosition = findFirstWordInSentence((Sentence) structure);
 
                 SyntaxStructure word = structures.get(firstWordPosition);
-                ((Sentence) structure)
-                        .getComponentList()
-                        .set(firstWordPosition, structures.get(structures.size() - 2));
-                ((Sentence) structure)
-                        .getComponentList()
-                        .set(structures.size() - 2, word);
+                int lastWordPosition = structures.size() - 2;
+
+                setSentenceElement(sentence, firstWordPosition, structures.get(lastWordPosition));
+                setSentenceElement(sentence, lastWordPosition, word);
             }
         }
-        log.info("Words have been swapped");
+        log.info(WORD_SWAPPER_LOG_MESSAGE);
+    }
+
+    private static void setSentenceElement(Sentence sentence, int position, SyntaxStructure element) {
+        sentence
+                .getComponentList()
+                .set(position, element);
     }
 
     private static int findFirstWordInSentence(Sentence sentence) {
@@ -188,26 +201,26 @@ public class TextHandler {
 
     public static Text rollback(Text text) {
 
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("TextState.bat"))) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(OBJECT_STATE_FILE))) {
 
             text = (Text) inputStream.readObject();
         } catch (IOException ex) {
-            log.error("IOException caught: " + ex);
+            log.error(IOEXCEPTION_LOG_MESSAGE + ex);
             System.out.println(IMPOSSIBLE_TO_READ_TEXT);
         } catch (ClassNotFoundException ex) {
-            log.error("ClassNotFoundException caught: " + ex);
+            log.error(CLASS_NOT_FOUND_LOG_MESSAGE + ex);
             exit();
         }
 
-        log.info("Rollback successful");
+        log.info(ROLLBACK_LOG_MESSAGE);
         return text;
     }
 
     public static void saveTextState(Text text) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("TextState.bat"))) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(OBJECT_STATE_FILE))) {
             outputStream.writeObject(text);
         } catch (IOException ex) {
-            log.error("IOException caught: " + ex);
+            log.error(IOEXCEPTION_LOG_MESSAGE + ex);
         }
     }
 
@@ -215,18 +228,10 @@ public class TextHandler {
         List<String> sortedWords = new ArrayList<>();
 
         for (SyntaxStructure sentence : getSentences(text)) {
-            sortedWords.addAll(getSentenceWords((Sentence) sentence)
-                    .stream()
-                    .map(word -> word.getComponent()
-                            .toLowerCase())
-                    .collect(Collectors.toList()));
+            addAllSentenceWordsAsStrings(sortedWords, sentence);
         }
 
-        sortedWords = sortedWords
-                .stream()
-                .sorted()
-                .distinct()
-                .collect(Collectors.toList());
+        sortedWords = sortAndDistinctCollection(sortedWords);
 
         System.out.println(sortedWords.get(0));
 
@@ -234,11 +239,27 @@ public class TextHandler {
             String word = sortedWords.get(i);
             String previousWord = sortedWords.get(i - 1);
             if (word.charAt(0) != previousWord.charAt(0)) {
-                System.out.print("\n\t" + word + ";");
+                System.out.print("\n\t" + word + WORDS_DELIMITER);
             } else {
-                System.out.print("\s" + word + ";");
+                System.out.print("\s" + word + WORDS_DELIMITER);
             }
         }
         System.out.println("\n");
+    }
+
+    private static List<String> sortAndDistinctCollection(List<String> collection) {
+        return collection
+                .stream()
+                .sorted()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    private static void addAllSentenceWordsAsStrings(List<String> collection, SyntaxStructure sentence) {
+        collection.addAll(getSentenceWords((Sentence) sentence)
+                .stream()
+                .map(word -> word.getComponent()
+                        .toLowerCase())
+                .collect(Collectors.toList()));
     }
 }
