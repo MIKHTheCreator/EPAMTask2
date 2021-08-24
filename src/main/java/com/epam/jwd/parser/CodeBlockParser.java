@@ -15,6 +15,7 @@ public class CodeBlockParser extends Parser {
 
     private static final String WORD_PATTERN = "[\\w\\d]+";
     private static final String CODE_BLOCK_SEPARATOR = "\\b";
+    private static final String CODE_BLOCK_PARSER_LOG_MESSAGE = "CodeBlock has been parsed successfully";
 
     private final List<SyntaxStructure> codeBlockList;
 
@@ -35,7 +36,7 @@ public class CodeBlockParser extends Parser {
             codeBlockList.add(getStructureByType(element, WORD_PATTERN));
         }
 
-        log.info("CodeBlock has been parsed successfully");
+        log.info(CODE_BLOCK_PARSER_LOG_MESSAGE);
         return codeBlockList;
     }
 }

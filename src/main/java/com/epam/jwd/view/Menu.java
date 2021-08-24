@@ -39,6 +39,9 @@ public class Menu {
             ||8-*rollback*
             ||9-*exit*""";
     private static final String DELIMITER = "/===========================================\\";
+    private static final String WELCOME_LOG_MESSAGE = "Printing welcome message";
+    private static final String CLOSE_PROGRAMME_LOG_MESSAGE = "Closing programme...";
+    private static final String USER_INPUT_LOG_MESSAGE = "Waiting for user's input...";
     private static final int DEFAULT_OPERATION = 0;
 
     private static FunctionContext functionContext = new FunctionContext();
@@ -59,19 +62,18 @@ public class Menu {
 
     public static void printStartMessage() {
 
-        log.info("Printing welcome message");
+        log.info(WELCOME_LOG_MESSAGE);
         System.out.println(WELCOME_MESSAGE);
     }
 
     public static void getStartMenu() {
-        log.info("Printing start menu");
         System.out.println(DELIMITER);
         System.out.println(MENU_MESSAGE);
         System.out.println(DELIMITER);
     }
 
     public static void exit() {
-        log.info("Closing programme...");
+        log.info(CLOSE_PROGRAMME_LOG_MESSAGE);
         System.exit(1);
     }
 
@@ -79,7 +81,7 @@ public class Menu {
         getStartMenu();
 
         Scanner scan = new Scanner(System.in);
-        log.info("Waiting for user's input...");
+        log.info(USER_INPUT_LOG_MESSAGE);
 
         while (scan.hasNext()) {
 

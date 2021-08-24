@@ -15,6 +15,7 @@ public class SentenceParser extends Parser {
 
     private static final String WORD_PATTERN = "[\\w\\d]+";
     private static final String SENTENCE_SEPARATOR = "\\b";
+    private static final String SENTENCE_PARSER_LOG_MESSAGE = "Sentence has been parsed successfully";
 
     private final List<SyntaxStructure> sentenceList;
 
@@ -35,7 +36,7 @@ public class SentenceParser extends Parser {
             sentenceList.add(getStructureByType(element, WORD_PATTERN));
         }
 
-        log.info("Sentence has been parsed successfully");
+        log.info(SENTENCE_PARSER_LOG_MESSAGE);
         return sentenceList;
     }
 }

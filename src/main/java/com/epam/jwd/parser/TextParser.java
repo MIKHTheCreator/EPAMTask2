@@ -16,6 +16,7 @@ public class TextParser extends Parser {
     private static final Logger log = LogManager.getLogger(TextParser.class);
     private static final String SENTENCE_PATTERN = "\\s*[A-Z]+[\\w\\d()\\-%+=;:\\\"'\\s,/>’“”<]*[.?!]+[\\s]*";
     private static final String TEXT_PATTERN = "[^.!?]*[.!?]";
+    private static final String TEXT_PARSER_LOG_MESSAGE = "Text has been parsed";
     private final List<SyntaxStructure> componentList;
 
     {
@@ -44,7 +45,7 @@ public class TextParser extends Parser {
             }
         }
 
-        log.info("Text has been parsed");
+        log.info(TEXT_PARSER_LOG_MESSAGE);
         return componentList;
 
     }
