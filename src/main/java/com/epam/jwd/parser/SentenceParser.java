@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Parser class for parsing sentences using regex
+ * @author Mikhail Khareivhc
+ */
 public class SentenceParser extends Parser {
 
     private static final Logger log = LogManager.getLogger(SentenceParser.class);
@@ -23,10 +27,11 @@ public class SentenceParser extends Parser {
         sentenceList = new ArrayList<>();
     }
 
-    public List<SyntaxStructure> getSentenceList() {
-        return sentenceList;
-    }
-
+    /**
+     * {@link Parser#parse(String)}
+     * @param structure structure to parse
+     * @return list of parsed components
+     */
     @Override
     public List<SyntaxStructure> parse(String structure) {
         List<String> parsedStructure = Arrays

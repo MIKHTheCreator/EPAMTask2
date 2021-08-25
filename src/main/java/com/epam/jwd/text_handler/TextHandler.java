@@ -21,6 +21,10 @@ import java.util.stream.Collectors;
 
 import static com.epam.jwd.view.Menu.exit;
 
+/**
+ * Class which provides user with different text operations
+ * @author Mikhail Kharevich
+ */
 public class TextHandler {
 
     private static final Logger log = LogManager.getLogger(TextHandler.class);
@@ -40,11 +44,20 @@ public class TextHandler {
     private static final String CLASS_NOT_FOUND_LOG_MESSAGE = "ClassNotFoundException caught: ";
     private static final int DEFAULT_WORD_LENGTH = 4;
 
+    /**
+     * Method for printing Text object as a string in console
+     * @param text text object to print
+     */
     public static void printText(Text text) {
         log.info(PRINT_TEXT_LOG_MESSAGE);
         System.out.println(text.getComponent());
     }
 
+    /**
+     * Method for finding number of sentences with equal words
+     * @param text text object to work with
+     * @return number of sentences with equal words
+     */
     public static int findNumOfSentencesWithEqualsWords(Text text) {
         int numOfSentences = 0;
         for (SyntaxStructure sentence : text.getComponentList()) {
@@ -59,6 +72,11 @@ public class TextHandler {
         return numOfSentences;
     }
 
+    /**
+     * Method for getting list of SyntaxStructure objects, which contains only Words
+     * @param sentence Sentence object
+     * @return list of word components
+     */
     private static List<SyntaxStructure> getSentenceWords(Sentence sentence) {
         return sentence.getComponentList()
                 .stream()
@@ -66,16 +84,31 @@ public class TextHandler {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method for checking if there is equal words in one sentence
+     * @param sentenceWords sentence words
+     * @return true if there is equal words in one sentence, false otherwise
+     */
     private static boolean hasEqualWords(List<SyntaxStructure> sentenceWords) {
 
         return new HashSet<>(sentenceWords).size() < sentenceWords.size();
     }
 
+    /**
+     * Method for getting information about is current SyntaxStructure sentence or not
+     * @param structure SyntaxStructure
+     * @return true if SyntaxStructure is sentence, false otherwise
+     */
     private static boolean isSentence(SyntaxStructure structure) {
 
         return structure instanceof Sentence;
     }
 
+    /**
+     * Method for printing sentences by words increasing,
+     * print sentences in word amount sort
+     * @param text text object to work with
+     */
     public static void printSentencesByWordIncreasing(Text text) {
         List<SyntaxStructure> sentences = getSentences(text);
 
@@ -86,6 +119,11 @@ public class TextHandler {
                         .replaceAll("\n", " ")));
     }
 
+    /**
+     * Method for getting sentences from text object
+     * @param text text object to work with
+     * @return list of sentences a list of SyntaxStructure objects
+     */
     private static List<SyntaxStructure> getSentences(Text text) {
         List<SyntaxStructure> sentences = new ArrayList<>();
 
@@ -97,6 +135,11 @@ public class TextHandler {
         return sentences;
     }
 
+    /**
+     * Method for getting exclusive word in first sentence, which never used in next sentences
+     * @param text text object to work with
+     * @return exclusive word as a string
+     */
     public static String findExclusiveWord(Text text) {
         String exclusiveWord = "There is no exclusive words in first sentence!";
         List<SyntaxStructure> firstSentenceWords = getSentenceWords((Sentence) getSentences(text).get(0));
@@ -116,10 +159,21 @@ public class TextHandler {
         return exclusiveWord;
     }
 
+    /**
+     * Method for checking is the component in SyntaxStructure
+     * @param structure SyntaxStructure object, where method find the component
+     * @param component component to find
+     * @return true, if method find component in structure, false otherwise
+     */
     private static boolean hasComponentInSyntaxStructure(String structure, String component) {
         return structure.contains(component);
     }
 
+    /**
+     * Method for getting words by length
+     * @param text text object to work with
+     * @return list of Words of concrete length or if length isn't valid then words of default length
+     */
     public static List<SyntaxStructure> getWordsByLength(Text text) {
         List<SyntaxStructure> words = new ArrayList<>();
 
@@ -148,6 +202,11 @@ public class TextHandler {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method for getting question sentences from text
+     * @param text text object to work with
+     * @return list of question sentences
+     */
     private static List<SyntaxStructure> getQuestionSentences(Text text) {
         return getSentences(text)
                 .stream()
@@ -158,6 +217,10 @@ public class TextHandler {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method for swapping first and last words in sentence
+     * @param text text object to work with
+     */
     public static void swapFirstAndLastWords(Text text) {
         for (SyntaxStructure structure : text.getComponentList()) {
             if (isSentence(structure)) {
@@ -175,12 +238,23 @@ public class TextHandler {
         log.info(WORD_SWAPPER_LOG_MESSAGE);
     }
 
+    /**
+     * Method for setting sentence element on concrete position
+     * @param sentence sentence for setting element
+     * @param position position of concrete element
+     * @param element element to set on the position
+     */
     private static void setSentenceElement(Sentence sentence, int position, SyntaxStructure element) {
         sentence
                 .getComponentList()
                 .set(position, element);
     }
 
+    /**
+     * Method for finding first Word object in sentence
+     * @param sentence sentence object to work with
+     * @return index of found position
+     */
     private static int findFirstWordInSentence(Sentence sentence) {
         int index = 0;
 
@@ -195,10 +269,20 @@ public class TextHandler {
         return index;
     }
 
+    /**
+     * Method for getting information about SyntaxStructure(is it Word or not)
+     * @param structure SyntaxStructure object
+     * @return true if structure is a word object, false otherwise
+     */
     private static boolean isWord(SyntaxStructure structure) {
         return structure instanceof Word;
     }
 
+    /**
+     * Method for returning to the original text, which hasn't been changed
+     * @param text text object to work with
+     * @return original text object
+     */
     public static Text rollback(Text text) {
 
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(OBJECT_STATE_FILE))) {
@@ -216,6 +300,10 @@ public class TextHandler {
         return text;
     }
 
+    /**
+     * Method for saving text object state in file
+     * @param text text object to save
+     */
     public static void saveTextState(Text text) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(OBJECT_STATE_FILE))) {
             outputStream.writeObject(text);
@@ -224,6 +312,10 @@ public class TextHandler {
         }
     }
 
+    /**
+     * Method for printing text words in alphabetic sort
+     * @param text text object to work with
+     */
     public static void printSentenceWordsInAlphabeticSort(Text text) {
         List<String> sortedWords = new ArrayList<>();
 
@@ -247,6 +339,11 @@ public class TextHandler {
         System.out.println("\n");
     }
 
+    /**
+     * Method for sorting words by alphabet and delete same words
+     * @param collection list of words
+     * @return list of sorted words
+     */
     private static List<String> sortAndDistinctCollection(List<String> collection) {
         return collection
                 .stream()
@@ -255,6 +352,11 @@ public class TextHandler {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method for transformation Word objects to String and adding them to list
+     * @param collection list to add words
+     * @param sentence sentence object from where words should be taken
+     */
     private static void addAllSentenceWordsAsStrings(List<String> collection, SyntaxStructure sentence) {
         collection.addAll(getSentenceWords((Sentence) sentence)
                 .stream()

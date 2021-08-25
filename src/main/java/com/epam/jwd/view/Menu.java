@@ -2,6 +2,7 @@ package com.epam.jwd.view;
 
 import com.epam.jwd.entity.Text;
 import com.epam.jwd.switcher.FunctionContext;
+import com.epam.jwd.switcher.impl.DefaultFunctionImpl;
 import com.epam.jwd.switcher.impl.EqualWordsFunctionImpl;
 import com.epam.jwd.switcher.impl.ExclusiveWordFunctionImpl;
 import com.epam.jwd.switcher.impl.ExitFunctionImpl;
@@ -17,8 +18,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+import static com.epam.jwd.validation.NumberValidation.getNumberIfSupported;
 import static com.epam.jwd.validation.NumberValidation.getNumberInput;
 
+/**
+ * Class which keeps inside simple console menu
+ * @author Mikhail Kharevich
+ */
 public class Menu {
 
     private static final Logger log = LogManager.getLogger(Menu.class);
@@ -42,11 +48,13 @@ public class Menu {
     private static final String WELCOME_LOG_MESSAGE = "Printing welcome message";
     private static final String CLOSE_PROGRAMME_LOG_MESSAGE = "Closing programme...";
     private static final String USER_INPUT_LOG_MESSAGE = "Waiting for user's input...";
-    private static final int DEFAULT_OPERATION = 0;
+    private static final int WRONG_INPUT_OPERATION = 0;
+    private static final int DEFAULT_OPERATION_NUMBER = -1;
 
     private static FunctionContext functionContext = new FunctionContext();
 
     static {
+        functionContext.register(-1, new DefaultFunctionImpl());
         functionContext.register(0, new WrongInputFunctionImpl());
         functionContext.register(1, new PrintTextFunctionImpl());
         functionContext.register(2, new EqualWordsFunctionImpl());
@@ -60,23 +68,36 @@ public class Menu {
 
     }
 
+    /**
+     * Method for printing {@value WELCOME_MESSAGE}
+     */
     public static void printStartMessage() {
 
         log.info(WELCOME_LOG_MESSAGE);
         System.out.println(WELCOME_MESSAGE);
     }
 
+    /**
+     * Method for printing {@value DELIMITER} {@value MENU_MESSAGE} {@value DELIMITER}
+     */
     public static void getStartMenu() {
         System.out.println(DELIMITER);
         System.out.println(MENU_MESSAGE);
         System.out.println(DELIMITER);
     }
 
+    /**
+     * Method for closing programme
+     */
     public static void exit() {
         log.info(CLOSE_PROGRAMME_LOG_MESSAGE);
         System.exit(1);
     }
 
+    /**
+     * Method for running menu provides user with opportunity to choose operation
+     * @param text text object to work with
+     */
     public static void runMenu(Text text) {
         getStartMenu();
 
@@ -85,7 +106,10 @@ public class Menu {
 
         while (scan.hasNext()) {
 
-           text = functionContext.call(getNumberInput(scan, DEFAULT_OPERATION), text);
+            int inputNumber = getNumberInput(scan, WRONG_INPUT_OPERATION);
+            text = functionContext.call(getNumberIfSupported(inputNumber, functionContext.getContextSize(),
+                    DEFAULT_OPERATION_NUMBER), text);
+
         }
     }
 

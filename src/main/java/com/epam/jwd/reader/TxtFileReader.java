@@ -15,6 +15,10 @@ import static com.epam.jwd.validation.FilePathValidation.isAvailableFilePath;
 import static com.epam.jwd.view.Menu.exit;
 import static com.epam.jwd.view.Menu.printStartMessage;
 
+/**
+ * Class which has method to read text from .txt file
+ * @author Mikhail Kharevich
+ */
 public class TxtFileReader {
 
     private static final Logger log = LogManager.getLogger(TxtFileReader.class);
@@ -33,6 +37,10 @@ public class TxtFileReader {
     private static final String USER_FILE_LOG_MESSAGE = "User's file has been chosen: ";
     private static final String READ_TEXT_FILE_LOG_MESSAGE = "TextFile has been read";
 
+    /**
+     * Method for getting text from file as a string object
+     * @return text as a string
+     */
     public static String getFileText() {
 
         printStartMessage();
@@ -48,6 +56,10 @@ public class TxtFileReader {
         return builder.toString();
     }
 
+    /**
+     * Method which provides user with opportunity to choose his .txt file to read
+     * @return users file path or default file paths if user choose them
+     */
     public static String getFilePath() {
         System.out.println(START_MESSAGE);
 
@@ -85,6 +97,12 @@ public class TxtFileReader {
         return path;
     }
 
+    /**
+     * Method for reading text from file using IOSteams
+     * @param filePath path to file to read
+     * @param builder StringBuilder object for saving text
+     * @throws IOException exception provided when filePath isn't valid
+     */
     private static void readTextFromFile(String filePath, StringBuilder builder) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
                 new FileInputStream(filePath)))) {

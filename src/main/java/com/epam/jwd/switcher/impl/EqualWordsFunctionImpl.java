@@ -8,6 +8,10 @@ import org.apache.logging.log4j.Logger;
 import static com.epam.jwd.text_handler.TextHandler.findNumOfSentencesWithEqualsWords;
 import static com.epam.jwd.view.Menu.getStartMenu;
 
+/**
+ * Interface implementation for getting special functional behavior
+ * @author Mikhail Kharevich
+ */
 public class EqualWordsFunctionImpl implements FunctionExecutor {
 
     private static final Logger log = LogManager.getLogger(EqualWordsFunctionImpl.class);
@@ -15,6 +19,11 @@ public class EqualWordsFunctionImpl implements FunctionExecutor {
     private static final String SENTENCE_INCREASING = "Number of sentences with equal words: ";
     private static final String EQUAL_WORDS_FUNCTION_LOG_MESSAGE = "getNumOfSentencesWithEqualWords function has been chosen";
 
+    /**
+     * Method for executing getNumOfSentencesWithEqualWords function {@link FunctionExecutor#execute(Text)}
+     * @param text object to operate with
+     * @return text object
+     */
     @Override
     public Text execute(Text text) {
         log.info(EQUAL_WORDS_FUNCTION_LOG_MESSAGE);
