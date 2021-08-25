@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Parser class which parse code block and creates word and punctuation mark objects using regex
+ * @author Mikhail Kharevich
+ */
 public class CodeBlockParser extends Parser {
 
     private static final Logger log = LogManager.getLogger(SentenceParser.class);
@@ -23,10 +27,11 @@ public class CodeBlockParser extends Parser {
         codeBlockList = new ArrayList<>();
     }
 
-    public List<SyntaxStructure> getCodeBlockList() {
-        return codeBlockList;
-    }
-
+    /**
+     * {@link Parser#parse(String)}
+     * @param structure structure to parse
+     * @return list of parsed objects
+     */
     @Override
     public List<SyntaxStructure> parse(String structure) {
         List<String> parsedStructure = Arrays

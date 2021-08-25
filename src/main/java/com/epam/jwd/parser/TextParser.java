@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parse class for text parsing using regex
+ * @author Mikhail Kharevich
+ */
 public class TextParser extends Parser {
 
     private static final Logger log = LogManager.getLogger(TextParser.class);
@@ -23,10 +27,11 @@ public class TextParser extends Parser {
         componentList = new ArrayList<>();
     }
 
-    public List<SyntaxStructure> getComponentList() {
-        return componentList;
-    }
-
+    /**
+     * {@link Parser#parse(String)}
+     * @param structure structure to parse
+     * @return list of parsed components
+     */
     @Override
     public List<SyntaxStructure> parse(String structure) {
         Pattern pattern = Pattern.compile(TEXT_PATTERN);
