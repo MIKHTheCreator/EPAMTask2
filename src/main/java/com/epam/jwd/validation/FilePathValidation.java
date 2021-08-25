@@ -7,6 +7,10 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Class which keeps inside method for path validation
+ * @author Mikhail Kharevich
+ */
 public class FilePathValidation {
 
     private static final Logger log = LogManager.getLogger(FilePathValidation.class);
@@ -16,6 +20,13 @@ public class FilePathValidation {
     private static final String FILE_PATH_PATTERN = "([A-Z]:)?[/\\\\].*\\.txt";
     private static final String PATH_IS_AVAILABLE_LOG_MESSAGE = "Path is available";
 
+    /**
+     * Method for getting information about valid or not user file path is
+     * @param path users file path
+     * @return true if input file path valid false otherwise
+     * @throws UnsupportedFileFormatException {@link UnsupportedFileFormatException}
+     * @throws FileNotFoundException when user's file wasn't find
+     */
     public static boolean isAvailableFilePath(String path)
             throws UnsupportedFileFormatException, FileNotFoundException {
 
