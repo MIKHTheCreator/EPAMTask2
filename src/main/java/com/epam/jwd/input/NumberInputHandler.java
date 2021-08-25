@@ -44,6 +44,12 @@ public class NumberInputHandler {
         }
     }
 
+    /**
+     * Method for input number validation
+     * @param inputNumber users input
+     * @param numOfSupportedOperations operations map size
+     * @return true if number is valid, false otherwise
+     */
     private static boolean isValidNumber(int inputNumber, int numOfSupportedOperations) {
         return (inputNumber < numOfSupportedOperations - 1) && (inputNumber >= START_FUNCTION_POSITION);
     }
