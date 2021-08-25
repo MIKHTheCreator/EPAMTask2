@@ -1,12 +1,12 @@
-package com.epam.jwd.validation;
+package com.epam.jwd.input;
 
 import java.util.Scanner;
 
 /**
- * Class which keeps inside methods for number validation
+ * Class which keeps inside methods for number sorting
  * @author Mikhail Kharevich
  */
-public class NumberValidation {
+public class NumberInputHandler {
 
     /**
      * Method for getting input number or default one
@@ -29,7 +29,7 @@ public class NumberValidation {
 
     /**
      * Method for getting number if it's valid for operation
-     * @param inputNumber {@link NumberValidation#getNumberInput(Scanner, int)}
+     * @param inputNumber {@link NumberInputHandler#getNumberInput(Scanner, int)}
      * @param numberOfSupportedOperations max number of operation which user can choose
      * @param defaultOperation number of default operation
      * @return user input number if it less than (numberOfSupportedOperations - 1), defaultOperation otherwise

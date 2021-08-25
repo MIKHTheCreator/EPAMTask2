@@ -18,8 +18,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
-import static com.epam.jwd.validation.NumberValidation.getNumberIfSupported;
-import static com.epam.jwd.validation.NumberValidation.getNumberInput;
+import static com.epam.jwd.input.NumberInputHandler.getNumberIfSupported;
+import static com.epam.jwd.input.NumberInputHandler.getNumberInput;
 
 /**
  * Class which keeps inside simple console menu
