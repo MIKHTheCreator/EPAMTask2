@@ -8,6 +8,8 @@ import java.util.Scanner;
  */
 public class NumberInputHandler {
 
+    private static final int START_FUNCTION_POSITION = 1;
+
     /**
      * Method for getting input number or default one
      * @param scanner Scanner object
@@ -35,10 +37,14 @@ public class NumberInputHandler {
      * @return user input number if it less than (numberOfSupportedOperations - 1), defaultOperation otherwise
      */
     public static int getNumberIfSupported(int inputNumber, int numberOfSupportedOperations, int defaultOperation) {
-        if(Math.abs(inputNumber) < numberOfSupportedOperations - 1) {
+        if(isValidNumber(inputNumber, numberOfSupportedOperations)) {
             return inputNumber;
         } else {
             return defaultOperation;
         }
+    }
+
+    private static boolean isValidNumber(int inputNumber, int numOfSupportedOperations) {
+        return (inputNumber < numOfSupportedOperations - 1) && (inputNumber >= START_FUNCTION_POSITION);
     }
 }
