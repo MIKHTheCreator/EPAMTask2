@@ -2,10 +2,18 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
+/**
+ * Entity class which keeps inside word as a string
+ * @author Mikhail Kharevich
+ */
 public class Word implements SyntaxStructure {
 
     private String word;
 
+    /**
+     * Constructor which creates word object from string
+     * @param word word
+     */
     public Word(String word) {
         this.word = word;
     }
@@ -18,6 +26,10 @@ public class Word implements SyntaxStructure {
         this.word = word;
     }
 
+    /**
+     * {@link SyntaxStructure#getComponent()}
+     * @return word as a string
+     */
     @Override
     public String getComponent() {
         return word;

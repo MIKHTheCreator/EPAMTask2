@@ -10,6 +10,11 @@ import static com.epam.jwd.reader.TxtFileReader.getFileText;
 import static com.epam.jwd.text_handler.TextHandler.saveTextState;
 import static com.epam.jwd.view.Menu.runMenu;
 
+
+/**
+ * Main class which is used to start application
+ * @author Mikhail Kharevich
+ */
 public class ApplicationRunner {
 
     private static final Logger log = LogManager.getLogger(ApplicationRunner.class);
@@ -25,6 +30,10 @@ public class ApplicationRunner {
 
     }
 
+    /**
+     * Method which read text from file and create Text object
+     * @return text object
+     */
     public static Text readFileToTextObject(){
         Parser parser = new TextParser();
 

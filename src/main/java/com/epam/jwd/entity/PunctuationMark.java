@@ -2,10 +2,18 @@ package com.epam.jwd.entity;
 
 import java.util.Objects;
 
+/**
+ * Entity class which keep inside punctuation mark as a symbol
+ * @author Mikhail Kharevich
+ */
 public class PunctuationMark implements SyntaxStructure {
 
     private String character;
 
+    /**
+     * Constructor for creating punctuation mark as an object
+     * @param character string visualisation of punctuation mark
+     */
     public PunctuationMark(String character) {
         this.character = character;
     }
@@ -18,6 +26,10 @@ public class PunctuationMark implements SyntaxStructure {
         this.character = character;
     }
 
+    /**
+     * {@link SyntaxStructure#getComponent()}
+     * @return component as a string
+     */
     @Override
     public String getComponent() {
         return character;
