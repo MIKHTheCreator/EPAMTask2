@@ -19,6 +19,8 @@ public class FilePathValidation {
     private static final String FILE_NOT_FOUND_EXCEPTION_MESSAGE = "File with such name isn't found";
     private static final String FILE_PATH_PATTERN = "([A-Z]:)?[/\\\\].*\\.txt";
     private static final String PATH_IS_AVAILABLE_LOG_MESSAGE = "Path is available";
+    private static final String UNSUPPORTED_FILE_FORMAT_EXCEPTION_LOG_MESSAGE = "Throwing UnsupportedFileFormatException caught by file format dismatching";
+    private static final String FILE_NOT_FOUND_EXCEPTION_LOG_MESSAGE = "Throwing FileNotFoundException caught by impossibility to find a file";
 
     /**
      * Method for getting information about valid or not user file path is
@@ -35,9 +37,11 @@ public class FilePathValidation {
                 log.info(PATH_IS_AVAILABLE_LOG_MESSAGE);
                 return true;
             } else {
+                log.error(UNSUPPORTED_FILE_FORMAT_EXCEPTION_LOG_MESSAGE);
                 throw new UnsupportedFileFormatException(FILE_FORMAT_EXCEPTION_MESSAGE);
             }
         } else {
+            log.error(FILE_NOT_FOUND_EXCEPTION_LOG_MESSAGE);
             throw new FileNotFoundException(FILE_NOT_FOUND_EXCEPTION_MESSAGE);
         }
 
