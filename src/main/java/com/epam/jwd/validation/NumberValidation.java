@@ -16,4 +16,12 @@ public class NumberValidation {
 
         return inputNumber;
     }
+
+    public static int getNumberIfSupported(int inputNumber, int numberOfSupportedOperations, int defaultOperation) {
+        if(Math.abs(inputNumber) < numberOfSupportedOperations - 1) {
+            return inputNumber;
+        } else {
+            return defaultOperation;
+        }
+    }
 }

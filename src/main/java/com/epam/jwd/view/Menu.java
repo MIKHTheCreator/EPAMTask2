@@ -2,6 +2,7 @@ package com.epam.jwd.view;
 
 import com.epam.jwd.entity.Text;
 import com.epam.jwd.switcher.FunctionContext;
+import com.epam.jwd.switcher.impl.DefaultFunctionImpl;
 import com.epam.jwd.switcher.impl.EqualWordsFunctionImpl;
 import com.epam.jwd.switcher.impl.ExclusiveWordFunctionImpl;
 import com.epam.jwd.switcher.impl.ExitFunctionImpl;
@@ -17,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+import static com.epam.jwd.validation.NumberValidation.getNumberIfSupported;
 import static com.epam.jwd.validation.NumberValidation.getNumberInput;
 
 public class Menu {
@@ -42,11 +44,13 @@ public class Menu {
     private static final String WELCOME_LOG_MESSAGE = "Printing welcome message";
     private static final String CLOSE_PROGRAMME_LOG_MESSAGE = "Closing programme...";
     private static final String USER_INPUT_LOG_MESSAGE = "Waiting for user's input...";
-    private static final int DEFAULT_OPERATION = 0;
+    private static final int WRONG_INPUT_OPERATION = 0;
+    private static final int DEFAULT_OPERATION_NUMBER = -1;
 
     private static FunctionContext functionContext = new FunctionContext();
 
     static {
+        functionContext.register(-1, new DefaultFunctionImpl());
         functionContext.register(0, new WrongInputFunctionImpl());
         functionContext.register(1, new PrintTextFunctionImpl());
         functionContext.register(2, new EqualWordsFunctionImpl());
@@ -84,7 +88,9 @@ public class Menu {
 
         while (scan.hasNext()) {
 
-            text = functionContext.call(getNumberInput(scan, DEFAULT_OPERATION), text);
+            int inputNumber = getNumberInput(scan, WRONG_INPUT_OPERATION);
+            text = functionContext.call(getNumberIfSupported(inputNumber, functionContext.getContextSize(),
+                    DEFAULT_OPERATION_NUMBER), text);
         }
     }
 
