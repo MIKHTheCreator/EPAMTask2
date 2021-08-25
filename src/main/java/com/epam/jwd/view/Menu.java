@@ -65,6 +65,7 @@ public class Menu {
         functionContext.register(7, new WordsInAlphabetSortImpl());
         functionContext.register(8, new RollbackFunctionImpl());
         functionContext.register(9, new ExitFunctionImpl());
+
     }
 
     /**
@@ -108,6 +109,7 @@ public class Menu {
             int inputNumber = getNumberInput(scan, WRONG_INPUT_OPERATION);
             text = functionContext.call(getNumberIfSupported(inputNumber, functionContext.getContextSize(),
                     DEFAULT_OPERATION_NUMBER), text);
+
         }
     }
 
