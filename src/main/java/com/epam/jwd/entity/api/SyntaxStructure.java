@@ -1,4 +1,4 @@
-package com.epam.jwd.entity;
+package com.epam.jwd.entity.api;
 
 import java.io.Serializable;
 

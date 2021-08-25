@@ -1,6 +1,6 @@
 package com.epam.jwd.application_runner;
 
-import com.epam.jwd.entity.Text;
+import com.epam.jwd.entity.impl.Text;
 import com.epam.jwd.parser.Parser;
 import com.epam.jwd.parser.TextParser;
 import org.apache.logging.log4j.LogManager;

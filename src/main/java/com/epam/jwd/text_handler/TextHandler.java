@@ -1,9 +1,9 @@
 package com.epam.jwd.text_handler;
 
-import com.epam.jwd.entity.Sentence;
-import com.epam.jwd.entity.SyntaxStructure;
-import com.epam.jwd.entity.Text;
-import com.epam.jwd.entity.Word;
+import com.epam.jwd.entity.impl.Sentence;
+import com.epam.jwd.entity.api.SyntaxStructure;
+import com.epam.jwd.entity.impl.Text;
+import com.epam.jwd.entity.impl.Word;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

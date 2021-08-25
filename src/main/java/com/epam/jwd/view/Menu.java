@@ -1,6 +1,6 @@
 package com.epam.jwd.view;
 
-import com.epam.jwd.entity.Text;
+import com.epam.jwd.entity.impl.Text;
 import com.epam.jwd.switcher.FunctionContext;
 import com.epam.jwd.switcher.impl.DefaultFunctionImpl;
 import com.epam.jwd.switcher.impl.EqualWordsFunctionImpl;
@@ -18,8 +18,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
-import static com.epam.jwd.validation.NumberValidation.getNumberIfSupported;
-import static com.epam.jwd.validation.NumberValidation.getNumberInput;
+import static com.epam.jwd.input.NumberInputHandler.getNumberIfSupported;
+import static com.epam.jwd.input.NumberInputHandler.getNumberInput;
 
 /**
  * Class which keeps inside simple console menu
@@ -51,7 +51,7 @@ public class Menu {
     private static final int WRONG_INPUT_OPERATION = 0;
     private static final int DEFAULT_OPERATION_NUMBER = -1;
 
-    private static FunctionContext functionContext = new FunctionContext();
+    private static final FunctionContext functionContext = new FunctionContext();
 
     static {
         functionContext.register(-1, new DefaultFunctionImpl());

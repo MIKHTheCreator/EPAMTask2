@@ -1,6 +1,7 @@
 package com.epam.jwd.switcher;
 
-import com.epam.jwd.entity.Text;
+import com.epam.jwd.entity.impl.Text;
+import com.epam.jwd.switcher.api.FunctionExecutor;
 
 import java.util.HashMap;
 import java.util.Map;

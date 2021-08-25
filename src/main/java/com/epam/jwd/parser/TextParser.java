@@ -1,8 +1,8 @@
 package com.epam.jwd.parser;
 
-import com.epam.jwd.entity.CodeBlock;
-import com.epam.jwd.entity.Sentence;
-import com.epam.jwd.entity.SyntaxStructure;
+import com.epam.jwd.entity.impl.CodeBlock;
+import com.epam.jwd.entity.impl.Sentence;
+import com.epam.jwd.entity.api.SyntaxStructure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

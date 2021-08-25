@@ -1,7 +1,7 @@
 package com.epam.jwd.switcher.impl;
 
-import com.epam.jwd.entity.Text;
-import com.epam.jwd.switcher.FunctionExecutor;
+import com.epam.jwd.entity.impl.Text;
+import com.epam.jwd.switcher.api.FunctionExecutor;
 import com.epam.jwd.view.Menu;
 
 import static com.epam.jwd.view.Menu.exit;

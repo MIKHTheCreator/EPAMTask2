@@ -1,4 +1,6 @@
-package com.epam.jwd.entity;
+package com.epam.jwd.entity.impl;
+
+import com.epam.jwd.entity.api.SyntaxStructure;
 
 import java.util.List;
 import java.util.Objects;
