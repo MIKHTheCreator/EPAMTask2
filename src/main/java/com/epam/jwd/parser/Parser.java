@@ -1,8 +1,8 @@
 package com.epam.jwd.parser;
 
-import com.epam.jwd.entity.PunctuationMark;
-import com.epam.jwd.entity.SyntaxStructure;
-import com.epam.jwd.entity.Word;
+import com.epam.jwd.entity.impl.PunctuationMark;
+import com.epam.jwd.entity.api.SyntaxStructure;
+import com.epam.jwd.entity.impl.Word;
 
 import java.util.List;
 

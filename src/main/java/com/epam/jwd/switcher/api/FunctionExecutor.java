@@ -1,6 +1,6 @@
-package com.epam.jwd.switcher;
+package com.epam.jwd.switcher.api;
 
-import com.epam.jwd.entity.Text;
+import com.epam.jwd.entity.impl.Text;
 
 /**
  * Interface which provides switcher classes with common behave

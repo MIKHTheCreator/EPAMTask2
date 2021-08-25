@@ -1,6 +1,6 @@
 package com.epam.jwd.view;
 
-import com.epam.jwd.entity.Text;
+import com.epam.jwd.entity.impl.Text;
 import com.epam.jwd.switcher.FunctionContext;
 import com.epam.jwd.switcher.impl.DefaultFunctionImpl;
 import com.epam.jwd.switcher.impl.EqualWordsFunctionImpl;
